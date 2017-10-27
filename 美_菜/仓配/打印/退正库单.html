@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <!-- meta -->
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8"/>
+    <!-- responsive -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="author" content="Heanes heanes.com email(heanes@163.com)"/>
+    <meta name="keywords" content="软件,商务,HTML,tutorials,source codes"/>
+    <meta name="description" content="描述，不超过150个字符"/>
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="//ui.heanes.com/dist/css/heanesUI.css"/>
+    <link rel="stylesheet" type="text/css" href="css/css.css"/>
+<title>退正库单</title>
+</head>
+<body class="full-frame-example marked">
+<!-- S 左侧功能区 S -->
+<div class="left-bar clearfix">
+    <div class="left-bar-content"></div>
+</div>
+<!-- E 左侧功能区 E -->
+<div class="wrap">
+    <!-- S header 头部 S -->
+    <div class="header"></div>
+    <!-- E header 头部 E-->
+    <!-- S main 主要内容 S -->
+    <div class="main">
+        <!-- 顶部全宽度内容区域 -->
+        <div class="full-width-block">
+            <div class="main-top-block"></div>
+        </div>
+        <div class="main-width-block main-wrap">
+            <!-- 顶部内容 -->
+            <div class="main-top-content"></div>
+            <!-- 主体内容 -->
+            <div class="main-content clearfix">
+                <!-- 左侧区域 -->
+                <div class="left-block left-wrap fl">
+                    <div class="left-content"></div>
+                </div>
+                <!-- 中心区域 -->
+                <div class="center-block center-wrap fl">
+                    <div class="center-content">
+                        <div class="receipts-delivered-pater" style="padding:50px;">
+                            <div class="print-paper print-paper-a4 receipts-delivered-print" id="printReceipts">
+                                <div class="print-paper-content">
+                                    <div class="receipts-title">
+                                        <div class="cell">
+                                            <h1 class="self-company-name">美菜 MEICAI.CN</h1>
+                                        </div>
+                                        <div class="cell">
+                                            <h1 class="self-warehouse-name">退正库单</h1>
+                                        </div>
+                                        <div class="cell">
+                                            <div class="qrcode-wrap">
+                                                <div class="qrcode-show"></div>
+                                                <div class="qrcode-text">
+                                                    <span>TK00117101212345</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="receipts-delivery-info">
+                                        <div class="cell">
+                                            <dl class="data-dl" style="font-weight:500;font-size:16px;">
+                                                <dd><span id="stationName">廊坊站点</span><span id="warehouseName">---北京1仓</span></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="cell">
+                                            <dl class="data-dl">
+                                                <dt>退正库单：</dt>
+                                                <dd><span id="returnTaskNo">TK00117101212345</span></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="cell">
+                                            <dl class="data-dl">
+                                                <dt>出库日期：</dt>
+                                                <dd><span id="deliveryDateStr">2017-06-15</span></dd>
+                                            </dl>
+                                            <dl class="data-dl">
+                                                <dt>打印时间：</dt>
+                                                <dd><span id="printTimeStr">2017-07-08 17:00:36</span></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="dispatch-data-table">
+                                        <table class="table table-bordered table-hover table-condensed">
+                                            <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>容器号</th>
+                                                <th>SKU</th>
+                                                <th>SSU</th>
+                                                <th>商品</th>
+                                                <th>出库量</th>
+                                                <th>备注</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>TP00100001</td>
+                                                <td>545</td>
+                                                <td>545</td>
+                                                <td>冬瓜|优质|约25斤/个</td>
+                                                <td>77.02个</td>
+                                                <td>包装物</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td></td>
+                                                <td>435435</td>
+                                                <td>435435</td>
+                                                <td>透明方形餐碗[箱(300个 x 500ml)]</td>
+                                                <td>52.8斤/2个</td>
+                                                <td>残次</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>TP00100002</td>
+                                                <td>5345</td>
+                                                <td>5345</td>
+                                                <td>冬瓜|优质|约25斤/个</td>
+                                                <td>52.8斤/2个</td>
+                                                <td>标品</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="print-paper-footer">
+                                        <div class="dispatch-info">
+                                            <div class="cell">
+                                                <table class="table table-bordered separate-average-3">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>出库人：</td>
+                                                        <td>送货人</td>
+                                                        <td>收货人</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>时间：2017-10-27 13:05:47 </td>
+                                                        <td>时间：</td>
+                                                        <td>时间：</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="print-handle">
+                                <button class="btn btn-success" id="printAreaBtn">打印</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧区域 -->
+                <div class="right-block right-wrap fl">
+                    <div class="right-content"></div>
+                </div>
+            </div>
+            <!-- 底部区域 -->
+            <div class="main-bottom-content"></div>
+        </div>
+        <div class="full-width-block">
+            <!-- 底部全宽度内容区域 -->
+            <div class="main-bottom-block"></div>
+        </div>
+    </div>
+    <!-- E main 主要内容 E -->
+    <!-- S footer 脚部 S -->
+    <div class="footer"></div>
+    <!-- E footer 脚部 E -->
+</div>
+<!-- S 右侧功能区 S -->
+<div class="right-bar clearfix">
+    <div class="right-bar-content"></div>
+</div>
+<cite>
+    <!-- S js S -->
+    <script type="text/javascript" src="/public/static/libs/js/jquery/2.1.4/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/public/static/libs/js/printArea/2.4.1/js/jquery.printarea.js"></script>
+    <script type="text/javascript" src="/public/static/libs/js/qrcode/jquery-qrcode/0.14.0/jquery-qrcode.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            /**
+             * @doc 打印
+             * @author Heanes
+             * @time 2017-10-27 09:59:12 周五
+             */
+            var $printReceipts = $('#printReceipts');
+            $('#printAreaBtn').on('click', function () {
+                $printReceipts.printArea({
+                });
+            });
+
+            function renderQrCode($qrCodeContainer, text) {
+                $qrCodeContainer.empty().qrcode({
+                    // render method: 'canvas', 'image' or 'div'
+                    render: 'image',
+                    // version range somewhere in 1 .. 40
+                    minVersion: 4,
+                    maxVersion: 40,
+
+                    // error correction level: 'L', 'M', 'Q' or 'H'
+                    ecLevel: 'H',
+
+                    // offset in pixel if drawn onto existing canvas
+                    left: 0,
+                    top: 0,
+                    // size in pixel
+                    size: 60,
+                    // code color or image element
+                    fill: '#000',
+                    // background color or image element, null for transparent background
+                    background: '#fff',
+                    // content
+                    text: text,
+                    // corner radius relative to module width: 0.0 .. 0.5
+                    radius: 0,
+                    // quiet zone in modules
+                    quiet: 2,
+                    // modes
+                    // 0: normal
+                    // 1: label strip
+                    // 2: label box
+                    // 3: image strip
+                    // 4: image box
+                    mode: 0,
+
+                    mSize: 0.2,
+                    mPosX: 0.5,
+                    mPosY: 0.5,
+
+                    label: '',
+                    fontname: 'sans',
+                    fontcolor: '#000'
+                });
+            }
+
+            var qrCodeText = 'TK00117101212345';
+            var $qrCodeContainer = $('.qrcode-show');
+            renderQrCode($qrCodeContainer, qrCodeText);
+        });
+    </script>
+    <!-- E js E -->
+</cite>
+</body>
+</html>

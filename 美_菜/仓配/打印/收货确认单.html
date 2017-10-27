@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <!-- meta -->
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8"/>
+    <!-- responsive -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="author" content="Heanes heanes.com email(heanes@163.com)"/>
+    <meta name="keywords" content="软件,商务,HTML,tutorials,source codes"/>
+    <meta name="description" content="描述，不超过150个字符"/>
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="//ui.heanes.com/dist/css/heanesUI.css"/>
+    <link rel="stylesheet" type="text/css" href="css/css.css"/>
+<title>收货确认单</title>
+</head>
+<body class="full-frame-example marked">
+<!-- S 左侧功能区 S -->
+<div class="left-bar clearfix">
+    <div class="left-bar-content"></div>
+</div>
+<!-- E 左侧功能区 E -->
+<div class="wrap">
+    <!-- S header 头部 S -->
+    <div class="header"></div>
+    <!-- E header 头部 E-->
+    <!-- S main 主要内容 S -->
+    <div class="main">
+        <!-- 顶部全宽度内容区域 -->
+        <div class="full-width-block">
+            <div class="main-top-block"></div>
+        </div>
+        <div class="main-width-block main-wrap">
+            <!-- 顶部内容 -->
+            <div class="main-top-content"></div>
+            <!-- 主体内容 -->
+            <div class="main-content clearfix">
+                <!-- 左侧区域 -->
+                <div class="left-block left-wrap fl">
+                    <div class="left-content"></div>
+                </div>
+                <!-- 中心区域 -->
+                <div class="center-block center-wrap fl">
+                    <div class="center-content">
+                        <div class="receipts-delivered-pater" style="padding:50px;">
+                            <div class="print-paper print-paper-a4 receipts-delivered-print" id="printReceipts">
+                                <div class="print-paper-content">
+                                    <div class="receipts-title">
+                                        <div class="cell">
+                                            <h1 class="self-company-name">美菜 MEICAI.CN</h1>
+                                        </div>
+                                        <div class="cell">
+                                            <h1 class="self-warehouse-name">收货确认单（<span id="warehouseName">北京仓库1</span>）</h1>
+                                        </div>
+                                        <div class="cell">
+                                            <h1 class="self-service-phone">客服电话：4006-135-135</h1>
+                                        </div>
+                                    </div>
+                                    <div class="receipts-delivery-info">
+                                        <div class="cell">
+                                            <dl class="data-dl">
+                                                <dd><span id="companyLevel">B</span>-<span id="companyId">2434</span>-<span id="companyName">美味卷饼屋</span></dd>
+                                            </dl>
+                                            <dl class="data-dl">
+                                                <dt>收货人：</dt>
+                                                <dd><span id="receiverName">王丽</span>(<span id="receiverMobile">15010691715</span>)</dd>
+                                            </dl>
+                                            <dl class="data-dl">
+                                                <dt>地址：</dt>
+                                                <dd><span id="receiverAddress">北京市某某地某某地某某地某某街道某某楼某某大厦某某室</span></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="cell">
+                                            <dl class="delivery-type">
+                                                <dd><span id="deliveryType">货到付款</span></dd>
+                                            </dl>
+                                            <dl class="data-dl">
+                                                <dt>配送：</dt>
+                                                <dd><span id="driverNo">010000034</span>-<span id="driverName">高天杰</span>(<span id="driverMobile">15010691715</span>)</dd>
+                                            </dl>
+                                            <dl class="data-dl">
+                                                <dt>销售：</dt>
+                                                <dd><span id="sellerName">郭嘉</span>(<span id="sellerMobile">15010691715</span>)</dd>
+                                            </dl>
+                                        </div>
+                                        <div class="cell">
+                                            <dl class="data-dl">
+                                                <dd class="h2-field"><span id="deliveryBatchId">199</span>-<span id="deliveryBatchName">晨鲜送</span>-<span id="routeName">刘家窑1-5</span></dd>
+                                            </dl>
+                                            <dl class="data-dl">
+                                                <dt>订单号：</dt>
+                                                <dd><span id="omcOrderId">12313435</span></dd>
+                                            </dl>
+                                            <dl class="data-dl">
+                                                <dt>配送日期：</dt>
+                                                <dd><span id="deliveryDateStr">2017-06-15</span></dd>
+                                            </dl>
+                                            <dl class="data-dl">
+                                                <dt>打印时间：</dt>
+                                                <dd><span id="printTimeStr">2017-07-08 17:00:36</span></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="receipts-data-table">
+                                        <table class="table table-bordered table-hover table-condensed">
+                                            <thead>
+                                            <tr>
+                                                <td>#</td>
+                                                <td>商品编码</td>
+                                                <td>商品名称</td>
+                                                <td>下单量</td>
+                                                <td>发货量</td>
+                                                <td>单价(优惠)</td>
+                                                <td>应付金额</td>
+                                                <td>备注</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>5454</td>
+                                                <td>可口可乐（24/箱）</td>
+                                                <td>50瓶</td>
+                                                <td>50瓶</td>
+                                                <td>77.02</td>
+                                                <td>154.04</td>
+                                                <td>2箱2瓶</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>5454</td>
+                                                <td>可口可乐（24/箱）</td>
+                                                <td>50瓶</td>
+                                                <td>50瓶</td>
+                                                <td>77.02</td>
+                                                <td>154.04</td>
+                                                <td>2箱2瓶</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>5454</td>
+                                                <td>可口可乐（24/箱）</td>
+                                                <td>50瓶</td>
+                                                <td>50瓶</td>
+                                                <td>77.02</td>
+                                                <td>154.04</td>
+                                                <td>2箱2瓶</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="receipts-summary">
+                                        <div class="cell 5th">
+                                            <dl class="data-dl">
+                                                <dt><span>已优惠：</span></dt>
+                                                <dd><span id="discountedTotalMoney">19.98</span></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="print-paper-footer">
+                                        <!-- 签名 -->
+                                        <div class="receipts-signature">
+                                            <div class="cell 5th">
+                                                <dl class="data-dl">
+                                                    <dt><span>收货人签字/日期：</span></dt>
+                                                    <dd><span id="receive-mark-date"></span></dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                        <!-- 备注 -->
+                                        <div class="receipts-remark">
+                                            <h4 class="remark-content">备注：受实际生产影响，已优惠可能与下单时优惠有差异。零钱收取规则：分钱全面，2角以内免收，3至7角按5角收，8至9角按1元收</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="print-handle">
+                                <button class="btn btn-success" id="printAreaBtn">打印</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧区域 -->
+                <div class="right-block right-wrap fl">
+                    <div class="right-content"></div>
+                </div>
+            </div>
+            <!-- 底部区域 -->
+            <div class="main-bottom-content"></div>
+        </div>
+        <div class="full-width-block">
+            <!-- 底部全宽度内容区域 -->
+            <div class="main-bottom-block"></div>
+        </div>
+    </div>
+    <!-- E main 主要内容 E -->
+    <!-- S footer 脚部 S -->
+    <div class="footer"></div>
+    <!-- E footer 脚部 E -->
+</div>
+<!-- S 右侧功能区 S -->
+<div class="right-bar clearfix">
+    <div class="right-bar-content"></div>
+</div>
+<cite>
+    <!-- S js S -->
+    <script type="text/javascript" src="/public/static/libs/js/jquery/2.1.4/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/public/static/libs/js/printArea/2.4.1/js/jquery.printarea.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            /**
+             * @doc 打印
+             * @author Heanes
+             * @time 2017-10-27 09:59:12 周五
+             */
+            var $printReceipts = $('#printReceipts');
+            $('#printAreaBtn').on('click', function () {
+                $printReceipts.printArea({
+                });
+            });
+        });
+    </script>
+    <!-- E js E -->
+</cite>
+</body>
+</html>
