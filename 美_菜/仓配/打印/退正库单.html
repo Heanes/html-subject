@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="css/css.css"/>
 <title>退正库单</title>
 </head>
-<body class="full-frame-example marked">
+<body>
 <!-- S 左侧功能区 S -->
 <div class="left-bar clearfix">
     <div class="left-bar-content"></div>
@@ -44,104 +44,96 @@
                 <!-- 中心区域 -->
                 <div class="center-block center-wrap fl">
                     <div class="center-content">
-                        <div class="receipts-delivered-pater" style="padding:50px;">
-                            <div class="print-paper print-paper-a4 receipts-delivered-print" id="printReceipts">
-                                <div class="print-paper-content">
-                                    <div class="receipts-title">
-                                        <div class="cell">
-                                            <h1 class="self-company-name">美菜 MEICAI.CN</h1>
-                                        </div>
-                                        <div class="cell">
-                                            <h1 class="print-paper-name">退正库单</h1>
-                                        </div>
-                                        <div class="cell">
-                                            <div class="qrcode-wrap">
-                                                <div class="qrcode-show"></div>
-                                                <div class="qrcode-text">
-                                                    <span>TK00117101212345</span>
+                        <div class="print-list-handle">
+                            <div class="to-print no-print">
+                                <button class="btn btn-success print-all">打印全部</button>
+                            </div>
+                        </div>
+                        <div class="print-list-wrap">
+                            <!--<div class="receipts-delivered-paper printTest">
+                                <div class="print-handle">
+                                    <button class="btn btn-success">打印</button>
+                                </div>
+                                <div class="print-paper print-paper-a4 receipts-delivered-print">
+                                    <div class="print-paper-content">
+                                        <div class="print-paper-header">
+                                            <div class="receipts-title">
+                                                <div class="cell">
+                                                    <h1 class="self-company-name">美菜 MEICAI.CN</h1>
+                                                </div>
+                                                <div class="cell">
+                                                    <h1 class="print-paper-name">退正库单</h1>
+                                                </div>
+                                                <div class="cell">
+                                                    <div class="qrcode-wrap">
+                                                        <div class="qrcode-show"></div>
+                                                        <div class="qrcode-text">
+                                                            <span class="text-task-no"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="receipts-delivery-info">
+                                                <div class="cell">
+                                                    <dl class="data-dl ship-warehouse-info">
+                                                        <dd><span class="warehouse-name-from"></span><span class="warehouse-name-to"></span></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="cell">
+                                                    <dl class="data-dl">
+                                                        <dt>退正库单：</dt>
+                                                        <dd><span class="text-task-no"></span></dd>
+                                                    </dl>
+                                                </div>
+                                                <div class="cell">
+                                                    <dl class="data-dl">
+                                                        <dt>出库日期：</dt>
+                                                        <dd><span class="out-warehouse-date"></span></dd>
+                                                    </dl>
+                                                    <dl class="data-dl">
+                                                        <dt>打印时间：</dt>
+                                                        <dd><span class="print-time"></span></dd>
+                                                    </dl>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="receipts-delivery-info">
-                                        <div class="cell">
-                                            <dl class="data-dl" style="font-weight:500;font-size:16px;">
-                                                <dd><span id="stationName">廊坊站点</span><span id="warehouseName">---北京1仓</span></dd>
-                                            </dl>
+                                        <div class="dispatch-data-table">
+                                            <table class="table table-bordered table-hover table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th>序号</th>
+                                                    <th>容器号</th>
+                                                    <th>SKU</th>
+                                                    <th>SSU</th>
+                                                    <th>商品</th>
+                                                    <th>出库量</th>
+                                                    <th>备注</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>TP00100001</td>
+                                                    <td>545</td>
+                                                    <td>545</td>
+                                                    <td>冬瓜|优质|约25斤/个</td>
+                                                    <td>77.02个</td>
+                                                    <td>包装物</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="cell">
-                                            <dl class="data-dl">
-                                                <dt>退正库单：</dt>
-                                                <dd><span id="returnTaskNo">TK00117101212345</span></dd>
-                                            </dl>
-                                        </div>
-                                        <div class="cell">
-                                            <dl class="data-dl">
-                                                <dt>出库日期：</dt>
-                                                <dd><span id="deliveryDateStr">2017-06-15</span></dd>
-                                            </dl>
-                                            <dl class="data-dl">
-                                                <dt>打印时间：</dt>
-                                                <dd><span id="printTimeStr">2017-07-08 17:00:36</span></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="dispatch-data-table">
-                                        <table class="table table-bordered table-hover table-condensed">
-                                            <thead>
-                                            <tr>
-                                                <th>序号</th>
-                                                <th>容器号</th>
-                                                <th>SKU</th>
-                                                <th>SSU</th>
-                                                <th>商品</th>
-                                                <th>出库量</th>
-                                                <th>备注</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>TP00100001</td>
-                                                <td>545</td>
-                                                <td>545</td>
-                                                <td>冬瓜|优质|约25斤/个</td>
-                                                <td>77.02个</td>
-                                                <td>包装物</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td></td>
-                                                <td>435435</td>
-                                                <td>435435</td>
-                                                <td>透明方形餐碗[箱(300个 x 500ml)]</td>
-                                                <td>52.8斤/2个</td>
-                                                <td>残次</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>TP00100002</td>
-                                                <td>5345</td>
-                                                <td>5345</td>
-                                                <td>冬瓜|优质|约25斤/个</td>
-                                                <td>52.8斤/2个</td>
-                                                <td>标品</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="print-paper-footer">
-                                        <div class="dispatch-info">
-                                            <div class="cell">
+                                        <div class="print-paper-footer">
+                                            <div class="dispatch-info">
                                                 <table class="table table-bordered separate-average-3">
                                                     <tbody>
                                                     <tr>
-                                                        <td>出库人：</td>
+                                                        <td>出库人：<span class="ship-user-name"></span></td>
                                                         <td>送货人</td>
                                                         <td>收货人</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>时间：2017-10-27 13:05:47 </td>
+                                                        <td>时间：<span class="time"></span></td>
                                                         <td>时间：</td>
                                                         <td>时间：</td>
                                                     </tr>
@@ -152,9 +144,41 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="print-handle">
-                                <button class="btn btn-success" id="printAreaBtn">打印</button>
-                            </div>
+                            <div class="receipts-delivered-paper printTest">
+                                <div class="print-handle">
+                                    <button class="btn btn-success">打印</button>
+                                </div>
+                                <div class="print-paper print-paper-a4 receipts-delivered-print">
+                                    <div class="print-paper-body print-paper-content">
+                                        <div class="dispatch-data-table">
+                                            <table class="table table-bordered table-hover table-condensed">
+                                                <thead>
+                                                <tr>
+                                                    <th>序号</th>
+                                                    <th>容器号</th>
+                                                    <th>SKU</th>
+                                                    <th>SSU</th>
+                                                    <th>商品</th>
+                                                    <th>出库量</th>
+                                                    <th>备注</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>TP00100001</td>
+                                                    <td>545</td>
+                                                    <td>545</td>
+                                                    <td>冬瓜|优质|约25斤/个</td>
+                                                    <td>77.02个</td>
+                                                    <td>包装物</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -180,71 +204,130 @@
 <div class="right-bar clearfix">
     <div class="right-bar-content"></div>
 </div>
+<div class="print-delivered-paper-template" style="display:none">
+    <div class="receipts-delivered-paper generate">
+        <div class="print-handle no-print">
+            <button class="btn btn-success">打印</button>
+        </div>
+        <div class="print-paper print-paper-a4 receipts-delivered-print">
+            <div class="print-paper-content">
+                <div class="print-paper-header">
+                    <div class="receipts-title">
+                        <div class="cell">
+                            <h1 class="self-company-name">美菜 MEICAI.CN</h1>
+                        </div>
+                        <div class="cell">
+                            <h1 class="print-paper-name">退正库单</h1>
+                        </div>
+                        <div class="cell">
+                            <div class="qrcode-wrap">
+                                <div class="qrcode-show"></div>
+                                <div class="qrcode-text">
+                                    <span class="text-task-no">TK123456</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="receipts-delivery-info">
+                        <div class="cell">
+                            <dl class="data-dl ship-warehouse-info">
+                                <dd><span class="warehouse-name-from">出发站点</span>——<span class="warehouse-name-to">目的站点</span></dd>
+                            </dl>
+                        </div>
+                        <div class="cell">
+                            <dl class="data-dl">
+                                <dt>退正库单：</dt>
+                                <dd><span class="text-task-no">TK123456</span></dd>
+                            </dl>
+                        </div>
+                        <div class="cell">
+                            <dl class="data-dl">
+                                <dt>出库日期：</dt>
+                                <dd><span class="out-warehouse-date">2017-10-31</span></dd>
+                            </dl>
+                            <dl class="data-dl">
+                                <dt>打印时间：</dt>
+                                <dd><span class="print-time">2017-10-31 11:06:49</span></dd>
+                            </dl>
+                            <span class="print-paper-pager"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="print-paper-body dispatch-data-table">
+                    <table class="table table-bordered table-hover table-condensed">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>容器号</th>
+                            <th>SKU</th>
+                            <th>SSU</th>
+                            <th>商品</th>
+                            <th>出库量</th>
+                            <th>备注</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="print-paper-footer">
+                    <div class="dispatch-info">
+                        <table class="table table-bordered separate-average-3">
+                            <tbody>
+                            <tr>
+                                <td>出库人：<span class="ship-user-name">张三</span></td>
+                                <td>送货人</td>
+                                <td>收货人</td>
+                            </tr>
+                            <tr>
+                                <td>时间：<span class="out-warehouse-time">2017-10-31 11:07:02</span></td>
+                                <td>时间：</td>
+                                <td>时间：</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <cite>
     <!-- S js S -->
     <script type="text/javascript" src="/public/static/libs/js/jquery/2.1.4/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/public/static/libs/js/printArea/2.4.1/js/jquery.printarea.js"></script>
     <script type="text/javascript" src="/public/static/libs/js/qrcode/jquery-qrcode/0.14.0/jquery-qrcode.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
     <script type="text/javascript">
         $(function () {
+
             /**
              * @doc 打印
              * @author Heanes
              * @time 2017-10-27 09:59:12 周五
              */
-            var $printReceipts = $('#printReceipts');
-            $('#printAreaBtn').on('click', function () {
-                $printReceipts.printArea({
+            var $receiptsDeliveredPaper = $('.print-list-wrap');
+            /*$.each($receiptsDeliveredPaper, function (i, item) {
+                var $printHandle = $(item).find('.print-handle'), $printPaper = $(item).find('.print-paper');
+                $printHandle.on('click', function () {
+                    $printPaper.printArea({
+                    });
+                });
+            });*/
+
+            /**
+             * @doc 打印全部
+             * @author Heanes
+             * @time 2017-11-03 12:09:44 周五
+             **/
+            $('.print-all').on('click', function () {
+                $receiptsDeliveredPaper.find('.print-paper').printArea({
                 });
             });
 
-            function renderQrCode($qrCodeContainer, text) {
-                $qrCodeContainer.empty().qrcode({
-                    // render method: 'canvas', 'image' or 'div'
-                    render: 'image',
-                    // version range somewhere in 1 .. 40
-                    minVersion: 4,
-                    maxVersion: 40,
-
-                    // error correction level: 'L', 'M', 'Q' or 'H'
-                    ecLevel: 'H',
-
-                    // offset in pixel if drawn onto existing canvas
-                    left: 0,
-                    top: 0,
-                    // size in pixel
-                    size: 60,
-                    // code color or image element
-                    fill: '#000',
-                    // background color or image element, null for transparent background
-                    background: '#fff',
-                    // content
-                    text: text,
-                    // corner radius relative to module width: 0.0 .. 0.5
-                    radius: 0,
-                    // quiet zone in modules
-                    quiet: 2,
-                    // modes
-                    // 0: normal
-                    // 1: label strip
-                    // 2: label box
-                    // 3: image strip
-                    // 4: image box
-                    mode: 0,
-
-                    mSize: 0.2,
-                    mPosX: 0.5,
-                    mPosY: 0.5,
-
-                    label: '',
-                    fontname: 'sans',
-                    fontcolor: '#000'
-                });
-            }
-
-            var qrCodeText = 'TK00117101212345';
+            /*var qrCodeText = 'TK00117101212345';
             var $qrCodeContainer = $('.qrcode-show');
-            renderQrCode($qrCodeContainer, qrCodeText);
+            renderQrCode($qrCodeContainer, qrCodeText);*/
         });
     </script>
     <!-- E js E -->

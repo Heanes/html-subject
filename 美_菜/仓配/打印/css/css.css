@@ -5,6 +5,27 @@
  * @time 2017-07-08 17:37:22 周六
  */
 /**
+ * @doc A4纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+@media print {
+  .no-print {
+    display: none; } }
+.print-list-handle {
+  width: 1134px;
+  margin: 0 auto; }
+  .print-list-handle .to-print {
+    margin-bottom: 20px;
+    text-align: right; }
+
+.print-list-wrap {
+  overflow-y: auto; }
+
+.receipts-delivered-paper {
+  padding: 10px; }
+
+/**
  * @doc 横向打印
  */
 @page {
@@ -36,19 +57,23 @@
   -webkit-animation-duration: 1s;
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-iteration-count: infinite;
-  -webkit-animation-direction: alternate; }
+  -webkit-animation-direction: alternate;
+  background-color: #fff;
+  page-break-after: always; }
 
 .print-paper-footer {
   position: absolute;
   width: 100%;
-  bottom: 30px; }
+  bottom: 0; }
 
 .receipts-delivered-print {
   padding: 30px 50px 50px; }
 
 .receipts-delivered-print .print-paper-content {
   position: relative;
-  height: 100%; }
+  height: 100%;
+  min-height: 720px;
+  padding-bottom: 130px; }
 
 .receipts-delivered-print .receipts-title {
   display: table;
@@ -97,6 +122,10 @@
 .receipts-delivered-print .cell dl.data-dl dd {
   display: table-cell; }
 
+.receipts-delivered-print .receipts-delivery-info .ship-warehouse-info {
+  font-weight: 500;
+  font-size: 16px; }
+
 .receipts-delivered-print .receipts-summary .cell {
   display: table-cell;
   width: 20%; }
@@ -112,14 +141,17 @@
   font-size: 13px; }
 
 .print-handle {
-  margin-top: 30px;
-  text-align: center; }
+  width: 1134px;
+  text-align: right;
+  margin: 0 auto 20px; }
 
 /**
  * @doc 退正库单
  * @author Heanes
  * @time 2017-10-27 11:55:40 周五
  */
+.receipts-delivered-print table {
+  margin: 0 auto; }
 .receipts-delivered-print .print-paper-name {
   text-align: center; }
 .receipts-delivered-print .qrcode-wrap {
@@ -128,24 +160,36 @@
   display: inline-block;
   width: 60px;
   height: 60px; }
-.receipts-delivered-print .dispatch-data-table thead th {
-  text-align: center; }
-.receipts-delivered-print .dispatch-data-table td:nth-child(1) {
-  width: 50px;
-  text-align: center; }
-.receipts-delivered-print .dispatch-data-table td:nth-child(2) {
-  width: 120px; }
-.receipts-delivered-print .dispatch-data-table td:nth-child(3) {
-  width: 100px; }
-.receipts-delivered-print .dispatch-data-table td:nth-child(4) {
-  width: 100px; }
-.receipts-delivered-print .dispatch-data-table td:nth-child(5) {
-  width: 280px; }
-.receipts-delivered-print .dispatch-data-table td:nth-child(6) {
-  width: 160px; }
+.receipts-delivered-print .dispatch-data-table {
+  font-size: 14px;
+  height: 470px;
+  overflow: auto; }
+  .receipts-delivered-print .dispatch-data-table table {
+    font-size: 14px; }
+    .receipts-delivered-print .dispatch-data-table table thead th {
+      text-align: center; }
+    .receipts-delivered-print .dispatch-data-table table td:nth-child(1) {
+      width: 50px;
+      text-align: center; }
+    .receipts-delivered-print .dispatch-data-table table td:nth-child(2) {
+      width: 120px; }
+    .receipts-delivered-print .dispatch-data-table table td:nth-child(3) {
+      width: 100px; }
+    .receipts-delivered-print .dispatch-data-table table td:nth-child(4) {
+      width: 100px; }
+    .receipts-delivered-print .dispatch-data-table table td:nth-child(5) {
+      width: 280px; }
+    .receipts-delivered-print .dispatch-data-table table td:nth-child(6) {
+      width: 160px; }
 .receipts-delivered-print .dispatch-info table {
+  font-size: 14px;
   line-height: 30px; }
   .receipts-delivered-print .dispatch-info table.separate-average-3 td {
     width: 33.333%; }
+.receipts-delivered-print .print-paper-pager {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  letter-spacing: 3px; }
 
 /*# sourceMappingURL=css.css.map */

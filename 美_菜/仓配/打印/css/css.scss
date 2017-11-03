@@ -6,12 +6,39 @@
  * @time 2017-07-08 17:37:22 周六
  */
 
+
+/**
+ * @doc A4纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+$printPaperA4Width:1134px;
+$printPaperA4Height:800px;
+
+@media print {
+  .no-print{ display:none;}
+}
+
+.print-list-handle{
+  width:$printPaperA4Width;
+  margin:0 auto;
+  .to-print{
+    margin-bottom:20px;
+    text-align:right;
+  }
+}
+
+.print-list-wrap{
+  overflow-y:auto;
+}
+.receipts-delivered-paper{
+  padding:10px;
+}
 /**
  * @doc 横向打印
  */
 @page{
   size:landscape;
-
 }
 
 /**
@@ -20,8 +47,8 @@
  * @time 2017-10-27 10:21:33 周五
  */
 .print-paper-a4{
-  width:1134px;
-  height:800px;
+  width:$printPaperA4Width;
+  height:$printPaperA4Height;
   margin:0 auto;
 }
 /**
@@ -43,20 +70,26 @@
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
+  background-color:#fff;
+  page-break-after: always;
 }
 
 .print-paper-footer{
   position:absolute;
   width:100%;
-  bottom:30px;
+  bottom:0;
 }
 
+$receiptsDeliveredPrintPaddingTop:30px;
+$receiptsDeliveredPrintPaddingBottom:50px;
 .receipts-delivered-print{
-  padding:30px 50px 50px;
+  padding:$receiptsDeliveredPrintPaddingTop 50px $receiptsDeliveredPrintPaddingBottom;
 }
 .receipts-delivered-print .print-paper-content{
   position:relative;
   height:100%;
+  min-height:$printPaperA4Height - $receiptsDeliveredPrintPaddingTop - $receiptsDeliveredPrintPaddingBottom;
+  padding-bottom:130px;
 }
 .receipts-delivered-print .receipts-title{display:table;width:100%;}
 .receipts-delivered-print .receipts-title .cell{display:table-cell;width:33.333%;vertical-align:middle;}
@@ -73,7 +106,7 @@
 .receipts-delivered-print .cell dl.data-dl dt,
 .receipts-delivered-print .cell dl.data-dl dd{display:table-cell;}
 
-
+.receipts-delivered-print .receipts-delivery-info .ship-warehouse-info{font-weight:500;font-size:16px;}
 .receipts-delivered-print .receipts-summary .cell{display:table-cell;width:20%;}
 .receipts-signature{margin-bottom:20px;}
 .receipts-delivered-print .receipts-remark{color:#555;}
@@ -81,10 +114,30 @@
 
 
 .print-handle{
-  margin-top:30px;
-  text-align:center;
+  width:$printPaperA4Width;
+  text-align:right;
+  margin:0 auto 20px;
 }
 
+// 头 + 身 + 尾
+.head-and-body-and-footer{
+
+}
+
+// 头及身
+.head-and-body{
+
+}
+
+// 身 + 尾
+.body-and-footer{
+
+}
+
+// 尾
+.just-footer{
+
+}
 
 /**
  * @doc 退正库单
@@ -92,6 +145,9 @@
  * @time 2017-10-27 11:55:40 周五
  */
 .receipts-delivered-print{
+  table{
+    margin:0 auto;
+  }
   .print-paper-name{
     text-align:center;
   }
@@ -105,32 +161,39 @@
   }
 
   .dispatch-data-table{
-    thead th{
-      text-align:center;
-    }
-    td:nth-child(1){
-      width:50px;
-      text-align:center;
-    }
-    td:nth-child(2){
-      width:120px;
-    }
-    td:nth-child(3){
-      width:100px;
-    }
-    td:nth-child(4){
-      width:100px;
-    }
-    td:nth-child(5){
-      width:280px;
-    }
-    td:nth-child(6){
-      width:160px;
+    font-size:14px;
+    height:470px;
+    overflow:auto;
+    table{
+      font-size:14px;
+      thead th{
+        text-align:center;
+      }
+      td:nth-child(1){
+        width:50px;
+        text-align:center;
+      }
+      td:nth-child(2){
+        width:120px;
+      }
+      td:nth-child(3){
+        width:100px;
+      }
+      td:nth-child(4){
+        width:100px;
+      }
+      td:nth-child(5){
+        width:280px;
+      }
+      td:nth-child(6){
+        width:160px;
+      }
     }
   }
 
   .dispatch-info{
     table{
+      font-size:14px;
       line-height:30px;
       &.separate-average-3{
         td{
@@ -140,5 +203,12 @@
     }
   }
 
+
+  .print-paper-pager{
+    position:absolute;
+    top:4px;
+    right:4px;
+    letter-spacing:3px;
+  }
 }
 

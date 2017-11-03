@@ -1,0 +1,251 @@
+$(function () {
+    var printData = [
+        {
+            returnTaskNo: 'TK123456789test',
+            warehouseNameFrom: '廊坊站点1',
+            warehouseNameTo: '北京仓库1',
+            outWarehouseDate: '2017-10-31',
+            outWarehouseTime: '2017-10-31 11:21:37',
+            outWarehouseTimeFormative: '2017-10-31 11:21:37',
+            printTime: '2017-10-31 11:22:20',
+            printTimeFormative: '2017-10-31 11:22:20',
+            shipUserName: '胡斐',
+            returnTaskList: geTestReturnTaskData(30)
+        }
+    ];
+    console.log(printData);
+
+    function geTestReturnTaskData(count) {
+        var one = {
+            index: 1,
+            containerCode: 'TP00100001',
+            skuId: '545',
+            ssuId: '545',
+            name: '冬瓜|优质|约25斤/个',
+            returnAmount: '77.02',
+            skuFormat: '斤/2个',
+            remark: '备注'
+        };
+        var dataList = [];
+        for(var i = 0; i < count; i++){
+            var j = i + 1;
+            var newOne = {
+                index: j,
+                containerCode: 'TP' + one.containerCode + j,
+                skuId: one.skuId + j,
+                ssuId: one.ssuId + j,
+                name: one.name + j,
+                returnAmount: one.skuId + j,
+                skuFormat: '斤/2个' + j,
+                remark: '备注' + j
+            };
+            dataList.push(newOne);
+        }
+        return dataList;
+    }
+
+    var $printDeliveredPaperTemplate = $('.print-delivered-paper-template');
+    var $printListWrap = $('.print-list-wrap');
+    renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate);
+    
+    function renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate) {
+        $.each(printData, function (i, item) {
+            var groupData = splitDataListToGroup(item.returnTaskList);
+            var hasPager = groupData.length > 1;
+            $.each(groupData, function (j, row) {
+                var $geDomWrap = $($printDeliveredPaperTemplate.html());
+                var $printHandle = $geDomWrap.find('.print-handle');
+                var $printBody = $geDomWrap.find('.dispatch-data-table').empty();
+                var $printHeader = $geDomWrap.find('.print-paper-header').empty();
+                var $printFooter = $geDomWrap.find('.print-paper-footer').empty();
+                // 头部
+                var $printHeaderGenerate = generatePrintHeader(item, $printDeliveredPaperTemplate);
+                if(hasPager){
+                    $printHeaderGenerate.find('.print-paper-pager').text((j + 1) + '/' + groupData.length);
+                }
+                $printHeader.replaceWith($printHeaderGenerate);
+                // 身子
+                $printBody.replaceWith(generateDataTable(row, $printDeliveredPaperTemplate));
+                $printHandle.replaceWith(generatePrintHandle($geDomWrap));
+                if(groupData.length === 1 || j === (groupData.length - 1)){
+                    // 尾部
+                    $printFooter.replaceWith(generatePrintFooter(item, $printDeliveredPaperTemplate));
+                }
+                $printListWrap.append($geDomWrap);
+            });
+        });
+    }
+
+    function splitDataListToPrintGroup(listData, headAndBodySize, justBodySize, bodyAndFooterSize, fullPageSize) {
+        // 头 + 数据(20)
+        headAndBodySize = headAndBodySize || 20;
+        // 全数据(26)
+        justBodySize = justBodySize || 26;
+        // 数据(20) + 尾部
+        bodyAndFooterSize = bodyAndFooterSize || 20;
+        // 包含全体，头 + 数据(12) + 尾部
+        fullPageSize = fullPageSize || 12;
+        var groupData = [];
+        // 0 < x < 12 1张
+        if(listData.length <= fullPageSize){
+            groupData.push(listData);
+            return groupData;
+        }
+        // 20 + 26 * n + 20 n+2 张
+        var groupOne = [];
+        $.each(listData, function (i, item) {
+            var index = i + 1;
+            groupOne.push(item);
+            if(listData.length < (headAndBodySize + justBodySize) && index === fullPageSize){
+                groupData.push(groupOne);
+                groupOne = [];
+            }
+
+            if(index === headAndBodySize){
+                groupData.push(groupOne);
+                groupOne = [];
+            }
+
+            if(index === (headAndBodySize + justBodySize)){
+                groupData.push(groupOne);
+                groupOne = [];
+            }
+
+            if(index >= (headAndBodySize + justBodySize) && (index - headAndBodySize) % justBodySize === 0){
+                groupData.push(groupOne);
+                groupOne = [];
+            }
+        });
+
+        groupOne !== [] ? groupData.push(groupOne) : null;
+        return groupData;
+    }
+    //console.log(splitDataListToPrintGroup(printData[0]['returnTaskList']));
+
+    
+    function splitDataListToGroup(listData, groupSize) {
+        groupSize = groupSize || 15;
+        var groupData = [];
+        if(listData.length <= groupSize){
+            groupData.push(listData);
+            return groupData;
+        }
+        var groupOne = [];
+        var matchGroup = listData.length % groupSize === 0;
+        $.each(listData, function (i, item) {
+            groupOne.push(item);
+            var groupIndex = ((i + 1) % groupSize);
+            if(groupIndex === 0 || (!matchGroup && i === (listData.length - 1))){
+                groupData.push(groupOne);
+                groupOne = [];
+            }
+        });
+        return groupData;
+    }
+    //console.log(splitDataListToGroup(printData[0]['returnTaskList']));
+
+    function generatePrintHeader(item, $printDeliveredPaperTemplate) {
+        var $geDomWrap = $($printDeliveredPaperTemplate.html());
+        var $printHeader = $geDomWrap.find('.print-paper-header');
+        // 二维码
+        var $qrcodeWrap = $printHeader.find('.qrcode-wrap');
+        renderQrCode($qrcodeWrap.find('.qrcode-show'), item.returnTaskNo);
+
+        $printHeader.find('.text-task-no').text(item.returnTaskNo);
+        $printHeader.find('.warehouse-name-from').text(item.warehouseNameFrom);
+        $printHeader.find('.warehouse-name-to').text(item.warehouseNameTo);
+        $printHeader.find('.out-warehouse-date').text(item.outWarehouseDate);
+        $printHeader.find('.out-warehouse-time').text(item.outWarehouseTimeFormative);
+        $printHeader.find('.print-time').text(item.printTimeFormative);
+        return $printHeader;
+    }
+
+    function generateDataTable(data, $printDeliveredPaperTemplate) {
+        var $geDomWrap = $($printDeliveredPaperTemplate.html());
+        var $dataTable = $geDomWrap.find('.dispatch-data-table');
+        // 单据数据
+        var $dispatchDataTable = $dataTable.find('table');
+        var $dispatchDataTableTbody = $dispatchDataTable.find('tbody');
+        $.each(data, function (i, row) {
+            var $dispatchDataTr = $('<tr>');
+            var $dispatchDataTds = '<td>' + row.index + '</td>\n' +
+                '<td>' + row.containerCode + '</td>\n' +
+                '<td>' + row.skuId + '</td>\n' +
+                '<td>' + row.ssuId + '</td>\n' +
+                '<td>' + row.name + '</td>\n' +
+                '<td>' + row.returnAmount + row.skuFormat + '</td>\n' +
+                '<td>' + row.remark + '</td>';
+            $dispatchDataTr.append($dispatchDataTds);
+            $dispatchDataTableTbody.append($dispatchDataTr);
+        });
+        return $dataTable;
+    }
+
+    function generatePrintFooter(item, $printDeliveredPaperTemplate) {
+        var $geDomWrap = $($printDeliveredPaperTemplate.html());
+        // 绑定打印按钮事件
+        var $printHandle = $geDomWrap.find('.print-handle'), $printPaper = $geDomWrap.find('.print-paper');
+        $printHandle.on('click', function () {
+            $printPaper.printArea({
+            });
+        });
+        var $printFooter = $geDomWrap.find('.print-paper-footer');
+        $printFooter.find('.ship-user-name').text(item.shipUserName);
+        $printFooter.find('.out-warehouse-time').text(item.outWarehouseTimeFormative);
+        return $printFooter;
+    }
+    function generatePrintHandle($geDomWrap) {
+        //var $geDomWrap = $($printDeliveredPaperTemplate.html());
+        // 绑定打印按钮事件
+        var $printHandle = $geDomWrap.find('.print-handle'), $printPaper = $geDomWrap.find('.print-paper');
+        $printHandle.on('click', function () {
+            $printPaper.printArea({
+            });
+        });
+        return $printHandle;
+    }
+
+    function renderQrCode($qrCodeContainer, text) {
+        $qrCodeContainer.empty().qrcode({
+            // render method: 'canvas', 'image' or 'div'
+            render: 'image',
+            // version range somewhere in 1 .. 40
+            minVersion: 4,
+            maxVersion: 40,
+
+            // error correction level: 'L', 'M', 'Q' or 'H'
+            ecLevel: 'H',
+
+            // offset in pixel if drawn onto existing canvas
+            left: 0,
+            top: 0,
+            // size in pixel
+            size: 60,
+            // code color or image element
+            fill: '#000',
+            // background color or image element, null for transparent background
+            background: '#fff',
+            // content
+            text: text,
+            // corner radius relative to module width: 0.0 .. 0.5
+            radius: 0,
+            // quiet zone in modules
+            quiet: 2,
+            // modes
+            // 0: normal
+            // 1: label strip
+            // 2: label box
+            // 3: image strip
+            // 4: image box
+            mode: 0,
+
+            mSize: 0.2,
+            mPosX: 0.5,
+            mPosY: 0.5,
+
+            label: '',
+            fontname: 'sans',
+            fontcolor: '#000'
+        });
+    }
+});
