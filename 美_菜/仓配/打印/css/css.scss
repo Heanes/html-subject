@@ -93,14 +93,18 @@ $receiptsDeliveredPrintPaddingBottom:50px;
 }
 .receipts-delivered-print .receipts-title{display:table;width:100%;}
 .receipts-delivered-print .receipts-title .cell{display:table-cell;width:33.333%;vertical-align:middle;}
+.receipts-delivered-print.bar-code .receipts-title .cell{vertical-align:top;}
 .receipts-delivered-print .receipts-title .cell .self-service-phone{font-size:20px;}
 .receipts-delivered-print .receipts-title .cell h1{font-size:22px;}
 
 .receipts-delivered-print .receipts-delivery-info{display:table;width:100%;margin-bottom:20px;}
-.receipts-delivered-print .receipts-delivery-info .cell{display:table-cell;width:33.333%;}
+.receipts-delivered-print .receipts-delivery-info .cell{display:table-cell;width:33.333%;vertical-align:top;}
+.receipts-delivered-print.bar-code .receipts-delivery-info .cell{vertical-align:bottom;}
+.receipts-delivered-print.bar-code .receipts-delivery-info .cell:last-child{padding-left:3em;}
 .receipts-delivered-print .receipts-delivery-info .cell .h2-field{font-size:22px;font-weight:600;}
 .receipts-delivered-print .receipts-delivery-info .cell .delivery-type{text-align:center;margin-bottom:8px;}
 .receipts-delivered-print .cell dl.data-dl{margin-bottom:8px;}
+.receipts-delivered-print .cell dl.data-dl:last-child{margin-bottom:0;}
 .receipts-delivered-print .cell dl.data-dl{display:table;}
 .receipts-delivered-print .cell dl.data-dl dt{min-width:70px;text-align:right;font-weight:normal;}
 .receipts-delivered-print .cell dl.data-dl dt,
@@ -150,14 +154,24 @@ $receiptsDeliveredPrintPaddingBottom:50px;
   }
   .print-paper-name{
     text-align:center;
+    margin:0;
   }
+  /**
+   * @doc 二维码
+   */
   .qrcode-wrap{
     text-align:center;
+    .qrcode-show{
+      display:inline-block;
+      width: 60px;
+      height: 60px;
+    }
   }
-  .qrcode-show{
-    display:inline-block;
-    width: 60px;
-    height: 60px;
+  /**
+   * @doc 一维码
+   */
+  .barcode-wrap{
+    text-align:center;
   }
 
   .dispatch-data-table{
@@ -206,8 +220,7 @@ $receiptsDeliveredPrintPaddingBottom:50px;
 
   .print-paper-pager{
     position:absolute;
-    top:4px;
-    right:4px;
+    right:0;
     letter-spacing:3px;
   }
 }

@@ -10,7 +10,7 @@ $(function () {
             printTime: '2017-10-31 11:22:20',
             printTimeFormative: '2017-10-31 11:22:20',
             shipUserName: '胡斐',
-            returnTaskList: geTestReturnTaskData(30)
+            returnTaskList: geTestReturnTaskData(15)
         }
     ];
     console.log(printData);
@@ -148,8 +148,11 @@ $(function () {
         var $geDomWrap = $($printDeliveredPaperTemplate.html());
         var $printHeader = $geDomWrap.find('.print-paper-header');
         // 二维码
-        var $qrcodeWrap = $printHeader.find('.qrcode-wrap');
-        renderQrCode($qrcodeWrap.find('.qrcode-show'), item.returnTaskNo);
+        /*var $qrcodeWrap = $printHeader.find('.qrcode-wrap');
+        renderQrCode($qrcodeWrap.find('.qrcode-show'), item.returnTaskNo);*/
+
+        var $barCodeWrap = $printHeader.find('.barcode-wrap');
+        renderBarCode($barCodeWrap.find('.barcode-show'), item.returnTaskNo);
 
         $printHeader.find('.text-task-no').text(item.returnTaskNo);
         $printHeader.find('.warehouse-name-from').text(item.warehouseNameFrom);
@@ -247,5 +250,25 @@ $(function () {
             fontname: 'sans',
             fontcolor: '#000'
         });
+    }
+    function renderBarCode($barCodeContainer, text, barcodeConfigOption) {
+        var barcodeConfigDefaultOption = {
+            format: 'code128',
+            width: 1.2,                 //设置条之间的宽度
+            height: 40,                 //高度
+            displayValue: false,         //是否在条形码下方显示文字
+            fontOptions: "bold",        //使文字加粗体或变斜体
+            font: "sans-serif",         //设置文本的字体
+            text: '',                   //覆盖显示的文本
+            textAlign: "center",        //设置文本的水平对齐方式
+            textPosition: "bottom",     //设置文本的垂直对齐方式
+            textMargin: 0,              //设置条形码和文本之间的间距
+            fontSize: 24,               //设置文本的大小
+            background: "#fff",         //设置条形码的背景
+            lineColor: "#000",          //设置条和文本的颜色。
+            margin: 0                   //设置条形码周围的空白边距
+        };
+        barcodeConfigOption = barcodeConfigOption || barcodeConfigDefaultOption;
+        $barCodeContainer.empty().JsBarcode(text, barcodeConfigOption);
     }
 });

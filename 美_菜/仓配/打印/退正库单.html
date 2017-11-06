@@ -209,7 +209,7 @@
         <div class="print-handle no-print">
             <button class="btn btn-success">打印</button>
         </div>
-        <div class="print-paper print-paper-a4 receipts-delivered-print">
+        <div class="print-paper print-paper-a4 receipts-delivered-print bar-code">
             <div class="print-paper-content">
                 <div class="print-paper-header">
                     <div class="receipts-title">
@@ -219,13 +219,13 @@
                         <div class="cell">
                             <h1 class="print-paper-name">退正库单</h1>
                         </div>
-                        <div class="cell">
-                            <div class="qrcode-wrap">
+                        <div class="cell" style="vertical-align:middle">
+                            <!--<div class="qrcode-wrap">
                                 <div class="qrcode-show"></div>
                                 <div class="qrcode-text">
                                     <span class="text-task-no">TK123456</span>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="receipts-delivery-info">
@@ -235,10 +235,12 @@
                             </dl>
                         </div>
                         <div class="cell">
-                            <dl class="data-dl">
-                                <dt>退正库单：</dt>
-                                <dd><span class="text-task-no">TK123456</span></dd>
-                            </dl>
+                            <div class="barcode-wrap">
+                                <svg class="barcode-show"></svg>
+                                <div class="barcode-text">
+                                    <span class="label">退正库单：</span><span class="text-task-no">TK123456</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="cell">
                             <dl class="data-dl">
@@ -248,8 +250,8 @@
                             <dl class="data-dl">
                                 <dt>打印时间：</dt>
                                 <dd><span class="print-time">2017-10-31 11:06:49</span></dd>
+                                <dd class="print-paper-pager"> 1/2</dd>
                             </dl>
-                            <span class="print-paper-pager"></span>
                         </div>
                     </div>
                 </div>
@@ -297,6 +299,7 @@
     <script type="text/javascript" src="/public/static/libs/js/jquery/2.1.4/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/public/static/libs/js/printArea/2.4.1/js/jquery.printarea.js"></script>
     <script type="text/javascript" src="/public/static/libs/js/qrcode/jquery-qrcode/0.14.0/jquery-qrcode.min.js"></script>
+    <script type="text/javascript" src="/public/static/libs/js/jsBarcode/3.8.0/JsBarcode.all.js"></script>
     <script type="text/javascript" src="js/js.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -328,6 +331,7 @@
             /*var qrCodeText = 'TK00117101212345';
             var $qrCodeContainer = $('.qrcode-show');
             renderQrCode($qrCodeContainer, qrCodeText);*/
+
         });
     </script>
     <!-- E js E -->

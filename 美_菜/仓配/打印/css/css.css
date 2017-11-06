@@ -84,6 +84,9 @@
   width: 33.333%;
   vertical-align: middle; }
 
+.receipts-delivered-print.bar-code .receipts-title .cell {
+  vertical-align: top; }
+
 .receipts-delivered-print .receipts-title .cell .self-service-phone {
   font-size: 20px; }
 
@@ -97,7 +100,14 @@
 
 .receipts-delivered-print .receipts-delivery-info .cell {
   display: table-cell;
-  width: 33.333%; }
+  width: 33.333%;
+  vertical-align: top; }
+
+.receipts-delivered-print.bar-code .receipts-delivery-info .cell {
+  vertical-align: bottom; }
+
+.receipts-delivered-print.bar-code .receipts-delivery-info .cell:last-child {
+  padding-left: 3em; }
 
 .receipts-delivered-print .receipts-delivery-info .cell .h2-field {
   font-size: 22px;
@@ -109,6 +119,9 @@
 
 .receipts-delivered-print .cell dl.data-dl {
   margin-bottom: 8px; }
+
+.receipts-delivered-print .cell dl.data-dl:last-child {
+  margin-bottom: 0; }
 
 .receipts-delivered-print .cell dl.data-dl {
   display: table; }
@@ -150,46 +163,55 @@
  * @author Heanes
  * @time 2017-10-27 11:55:40 周五
  */
-.receipts-delivered-print table {
-  margin: 0 auto; }
-.receipts-delivered-print .print-paper-name {
-  text-align: center; }
-.receipts-delivered-print .qrcode-wrap {
-  text-align: center; }
-.receipts-delivered-print .qrcode-show {
-  display: inline-block;
-  width: 60px;
-  height: 60px; }
-.receipts-delivered-print .dispatch-data-table {
-  font-size: 14px;
-  height: 470px;
-  overflow: auto; }
-  .receipts-delivered-print .dispatch-data-table table {
-    font-size: 14px; }
-    .receipts-delivered-print .dispatch-data-table table thead th {
-      text-align: center; }
-    .receipts-delivered-print .dispatch-data-table table td:nth-child(1) {
-      width: 50px;
-      text-align: center; }
-    .receipts-delivered-print .dispatch-data-table table td:nth-child(2) {
-      width: 120px; }
-    .receipts-delivered-print .dispatch-data-table table td:nth-child(3) {
-      width: 100px; }
-    .receipts-delivered-print .dispatch-data-table table td:nth-child(4) {
-      width: 100px; }
-    .receipts-delivered-print .dispatch-data-table table td:nth-child(5) {
-      width: 280px; }
-    .receipts-delivered-print .dispatch-data-table table td:nth-child(6) {
-      width: 160px; }
-.receipts-delivered-print .dispatch-info table {
-  font-size: 14px;
-  line-height: 30px; }
-  .receipts-delivered-print .dispatch-info table.separate-average-3 td {
-    width: 33.333%; }
-.receipts-delivered-print .print-paper-pager {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  letter-spacing: 3px; }
+.receipts-delivered-print {
+  /**
+   * @doc 二维码
+   */
+  /**
+   * @doc 一维码
+   */ }
+  .receipts-delivered-print table {
+    margin: 0 auto; }
+  .receipts-delivered-print .print-paper-name {
+    text-align: center;
+    margin: 0; }
+  .receipts-delivered-print .qrcode-wrap {
+    text-align: center; }
+    .receipts-delivered-print .qrcode-wrap .qrcode-show {
+      display: inline-block;
+      width: 60px;
+      height: 60px; }
+  .receipts-delivered-print .barcode-wrap {
+    text-align: center; }
+  .receipts-delivered-print .dispatch-data-table {
+    font-size: 14px;
+    height: 470px;
+    overflow: auto; }
+    .receipts-delivered-print .dispatch-data-table table {
+      font-size: 14px; }
+      .receipts-delivered-print .dispatch-data-table table thead th {
+        text-align: center; }
+      .receipts-delivered-print .dispatch-data-table table td:nth-child(1) {
+        width: 50px;
+        text-align: center; }
+      .receipts-delivered-print .dispatch-data-table table td:nth-child(2) {
+        width: 120px; }
+      .receipts-delivered-print .dispatch-data-table table td:nth-child(3) {
+        width: 100px; }
+      .receipts-delivered-print .dispatch-data-table table td:nth-child(4) {
+        width: 100px; }
+      .receipts-delivered-print .dispatch-data-table table td:nth-child(5) {
+        width: 280px; }
+      .receipts-delivered-print .dispatch-data-table table td:nth-child(6) {
+        width: 160px; }
+  .receipts-delivered-print .dispatch-info table {
+    font-size: 14px;
+    line-height: 30px; }
+    .receipts-delivered-print .dispatch-info table.separate-average-3 td {
+      width: 33.333%; }
+  .receipts-delivered-print .print-paper-pager {
+    position: absolute;
+    right: 0;
+    letter-spacing: 3px; }
 
 /*# sourceMappingURL=css.css.map */
