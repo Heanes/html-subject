@@ -6,17 +6,20 @@
  * @time 2017-07-08 17:37:22 周六
  */
 
-
 /**
  * @doc A4纸张大小
  * @author Heanes
  * @time 2017-10-27 10:21:33 周五
  */
 $printPaperA4Width:1134px;
-$printPaperA4Height:800px;
+$printPaperA4Height:778px;
 
 @media print {
   .no-print{ display:none;}
+}
+
+.print-end-page{
+  page-break-after:always;
 }
 
 .print-list-handle{
@@ -85,36 +88,48 @@ $receiptsDeliveredPrintPaddingBottom:50px;
 .receipts-delivered-print{
   padding:$receiptsDeliveredPrintPaddingTop 50px $receiptsDeliveredPrintPaddingBottom;
 }
-.receipts-delivered-print .print-paper-content{
+.print-paper-content{
   position:relative;
   height:100%;
   min-height:$printPaperA4Height - $receiptsDeliveredPrintPaddingTop - $receiptsDeliveredPrintPaddingBottom;
   padding-bottom:130px;
+  page-break-after: always;
 }
-.receipts-delivered-print .receipts-title{display:table;width:100%;}
-.receipts-delivered-print .receipts-title .cell{display:table-cell;width:33.333%;vertical-align:middle;}
-.receipts-delivered-print.bar-code .receipts-title .cell{vertical-align:top;}
-.receipts-delivered-print .receipts-title .cell .self-service-phone{font-size:20px;}
-.receipts-delivered-print .receipts-title .cell h1{font-size:22px;}
 
-.receipts-delivered-print .receipts-delivery-info{display:table;width:100%;margin-bottom:20px;}
-.receipts-delivered-print .receipts-delivery-info .cell{display:table-cell;width:33.333%;vertical-align:top;}
-.receipts-delivered-print.bar-code .receipts-delivery-info .cell{vertical-align:bottom;}
-.receipts-delivered-print.bar-code .receipts-delivery-info .cell:last-child{padding-left:3em;}
-.receipts-delivered-print .receipts-delivery-info .cell .h2-field{font-size:22px;font-weight:600;}
-.receipts-delivered-print .receipts-delivery-info .cell .delivery-type{text-align:center;margin-bottom:8px;}
-.receipts-delivered-print .cell dl.data-dl{margin-bottom:8px;}
-.receipts-delivered-print .cell dl.data-dl:last-child{margin-bottom:0;}
-.receipts-delivered-print .cell dl.data-dl{display:table;}
-.receipts-delivered-print .cell dl.data-dl dt{min-width:70px;text-align:right;font-weight:normal;}
-.receipts-delivered-print .cell dl.data-dl dt,
-.receipts-delivered-print .cell dl.data-dl dd{display:table-cell;}
+.print-paper-header{
+  .receipts-title{
+    display:table;
+    width:100%;
+  }
+  .receipts-title .cell{
+    display:table-cell;
+    width:33.333%;
+    vertical-align:middle;
+  }
+  .receipts-title .cell .self-service-phone{font-size:20px;}
+  .receipts-title .cell h1{font-size:22px;}
+  .receipts-delivery-info{display:table;width:100%;margin-bottom:20px;}
+  .receipts-delivery-info .cell{display:table-cell;width:33.333%;vertical-align:top;}
+  .receipts-delivery-info .cell .h2-field{font-size:22px;font-weight:600;}
+  .receipts-delivery-info .cell .delivery-type{text-align:center;margin-bottom:8px;}
+  .receipts-delivery-info .ship-warehouse-info{font-weight:500;font-size:16px;}
+}
 
-.receipts-delivered-print .receipts-delivery-info .ship-warehouse-info{font-weight:500;font-size:16px;}
-.receipts-delivered-print .receipts-summary .cell{display:table-cell;width:20%;}
+.bar-code .receipts-title .cell{vertical-align:top;}
+.bar-code .receipts-delivery-info .cell{vertical-align:bottom;}
+.bar-code .receipts-delivery-info .cell:last-child{padding-left:3em;}
+
+.cell dl.data-dl{margin-bottom:8px;}
+.cell dl.data-dl:last-child{margin-bottom:0;}
+.cell dl.data-dl{display:table;}
+.cell dl.data-dl dt{min-width:70px;text-align:right;font-weight:normal;}
+.cell dl.data-dl dt,
+.cell dl.data-dl dd{display:table-cell;}
+
+.receipts-summary .cell{display:table-cell;width:20%;}
 .receipts-signature{margin-bottom:20px;}
-.receipts-delivered-print .receipts-remark{color:#555;}
-.receipts-delivered-print .receipts-remark .remark-content{font-weight:normal;font-size:13px;}
+.print-paper-content .receipts-remark{color:#555;}
+.print-paper-content .receipts-remark .remark-content{font-weight:normal;font-size:13px;}
 
 
 .print-handle{
@@ -148,7 +163,7 @@ $receiptsDeliveredPrintPaddingBottom:50px;
  * @author Heanes
  * @time 2017-10-27 11:55:40 周五
  */
-.receipts-delivered-print{
+.print-paper-content{
   table{
     margin:0 auto;
   }
@@ -217,11 +232,21 @@ $receiptsDeliveredPrintPaddingBottom:50px;
     }
   }
 
-
   .print-paper-pager{
     position:absolute;
     right:0;
     letter-spacing:3px;
+  }
+}
+
+.print-group{
+  width:$printPaperA4Width + 50px;
+  margin:0 auto 10px;
+  padding:10px;
+  border:1px solid #ddd;
+  .print-group-handle{
+    border-bottom:1px solid #ddd;
+    margin-bottom:10px;
   }
 }
 

@@ -10,7 +10,19 @@ $(function () {
             printTime: '2017-10-31 11:22:20',
             printTimeFormative: '2017-10-31 11:22:20',
             shipUserName: '胡斐',
-            returnTaskList: geTestReturnTaskData(15)
+            returnTaskList: geTestReturnTaskData(30)
+        },
+        {
+            returnTaskNo: 'TK123456789test1',
+            warehouseNameFrom: '廊坊站点1',
+            warehouseNameTo: '北京仓库1',
+            outWarehouseDate: '2017-10-31',
+            outWarehouseTime: '2017-10-31 11:21:37',
+            outWarehouseTimeFormative: '2017-10-31 11:21:37',
+            printTime: '2017-10-31 11:22:20',
+            printTimeFormative: '2017-10-31 11:22:20',
+            shipUserName: '胡斐',
+            returnTaskList: geTestReturnTaskData(10)
         }
     ];
     console.log(printData);
@@ -50,11 +62,15 @@ $(function () {
     
     function renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate) {
         $.each(printData, function (i, item) {
+            var $geDomWrap = $($printDeliveredPaperTemplate.html());
+            var $printGroupHandle = $geDomWrap.find('.print-group-handle');
+            var $printGroupContent = $geDomWrap.find('.print-group-content').empty();
+
             var groupData = splitDataListToGroup(item.returnTaskList);
             var hasPager = groupData.length > 1;
             $.each(groupData, function (j, row) {
                 var $geDomWrap = $($printDeliveredPaperTemplate.html());
-                var $printHandle = $geDomWrap.find('.print-handle');
+
                 var $printBody = $geDomWrap.find('.dispatch-data-table').empty();
                 var $printHeader = $geDomWrap.find('.print-paper-header').empty();
                 var $printFooter = $geDomWrap.find('.print-paper-footer').empty();
@@ -66,13 +82,20 @@ $(function () {
                 $printHeader.replaceWith($printHeaderGenerate);
                 // 身子
                 $printBody.replaceWith(generateDataTable(row, $printDeliveredPaperTemplate));
-                $printHandle.replaceWith(generatePrintHandle($geDomWrap));
+
                 if(groupData.length === 1 || j === (groupData.length - 1)){
                     // 尾部
                     $printFooter.replaceWith(generatePrintFooter(item, $printDeliveredPaperTemplate));
                 }
-                $printListWrap.append($geDomWrap);
+                $printGroupContent.append($geDomWrap.find('.receipts-delivered-paper'));
             });
+            // 打印按钮
+            var printCallBack = function (aa) {
+                console.log(item.returnTaskNo);
+                console.log(aa);
+            };
+            $printGroupHandle.replaceWith(generatePrintHandle($geDomWrap, printCallBack, 'testaa'));
+            $printListWrap.append($geDomWrap);
         });
     }
 
@@ -197,13 +220,14 @@ $(function () {
         $printFooter.find('.out-warehouse-time').text(item.outWarehouseTimeFormative);
         return $printFooter;
     }
-    function generatePrintHandle($geDomWrap) {
+    function generatePrintHandle($geDomWrap, callback, callbackParam) {
         //var $geDomWrap = $($printDeliveredPaperTemplate.html());
         // 绑定打印按钮事件
-        var $printHandle = $geDomWrap.find('.print-handle'), $printPaper = $geDomWrap.find('.print-paper');
+        var $printHandle = $geDomWrap.find('.print-handle'), $printPaper = $geDomWrap.find('.print-paper-content');
         $printHandle.on('click', function () {
             $printPaper.printArea({
             });
+            if(typeof callback === 'function') callback(callbackParam);
         });
         return $printHandle;
     }
