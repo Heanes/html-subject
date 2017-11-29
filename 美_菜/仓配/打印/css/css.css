@@ -49,8 +49,8 @@
  * @time 2017-10-27 10:21:33 周五
  */
 .print-paper-a5 {
-  width: 1134px;
-  height: 800px;
+  width: 778px;
+  height: 567px;
   margin: 0 auto; }
 
 .print-paper {
@@ -70,7 +70,8 @@
   bottom: 0; }
 
 .receipts-delivered-print {
-  padding: 30px 50px 50px; }
+  padding: 30px 50px 50px;
+  font-size: 14px; }
 
 .print-paper-content {
   position: relative;
@@ -79,9 +80,12 @@
   padding-bottom: 130px;
   page-break-after: always; }
 
+.print-paper-header h1 {
+  margin-bottom: 0; }
 .print-paper-header .receipts-title {
   display: table;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 10px; }
 .print-paper-header .receipts-title .cell {
   display: table-cell;
   width: 33.333%;
@@ -107,6 +111,33 @@
 .print-paper-header .receipts-delivery-info .ship-warehouse-info {
   font-weight: 500;
   font-size: 16px; }
+
+.receipts-data-table {
+  font-size: 14px;
+  height: 470px;
+  overflow: auto; }
+  .receipts-data-table table {
+    font-size: 14px; }
+    .receipts-data-table table thead th {
+      text-align: center; }
+    .receipts-data-table table td:nth-child(1) {
+      width: 50px;
+      text-align: center; }
+    .receipts-data-table table td:nth-child(2) {
+      width: 120px; }
+    .receipts-data-table table td:nth-child(3) {
+      white-space: nowrap;
+      width: 340px; }
+    .receipts-data-table table td:nth-child(4) {
+      width: 100px; }
+    .receipts-data-table table td:nth-child(5) {
+      width: 100px; }
+    .receipts-data-table table td:nth-child(6) {
+      width: 100px; }
+    .receipts-data-table table td:nth-child(7) {
+      width: 100px; }
+    .receipts-data-table table tbody th, .receipts-data-table table tbody td {
+      padding: 4px; }
 
 .bar-code .receipts-title .cell {
   vertical-align: top; }
@@ -135,12 +166,18 @@
 .cell dl.data-dl dd {
   display: table-cell; }
 
-.receipts-summary .cell {
-  display: table-cell;
-  width: 20%; }
-
-.receipts-signature {
-  margin-bottom: 20px; }
+.receipts-summary, .receipts-signature {
+  display: table;
+  width: 100%; }
+  .receipts-summary .cell, .receipts-signature .cell {
+    display: table-cell;
+    line-height: 40px; }
+    .receipts-summary .cell.col6, .receipts-signature .cell.col6 {
+      width: 16.65%; }
+  .receipts-summary .need-pay-info, .receipts-signature .need-pay-info {
+    font-size: 20px;
+    font-weight: 600;
+    white-space: nowrap; }
 
 .print-paper-content .receipts-remark {
   color: #555; }
@@ -200,6 +237,8 @@
         width: 280px; }
       .print-paper-content .dispatch-data-table table td:nth-child(6) {
         width: 160px; }
+      .print-paper-content .dispatch-data-table table tbody th, .print-paper-content .dispatch-data-table table tbody td {
+        padding: 4px; }
   .print-paper-content .dispatch-info table {
     font-size: 14px;
     line-height: 30px; }

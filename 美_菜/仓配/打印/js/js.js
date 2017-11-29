@@ -47,8 +47,7 @@ $(function () {
                 skuId: one.skuId + j,
                 ssuId: one.ssuId + j,
                 name: one.name + j,
-                returnAmount: one.skuId + j,
-                skuFormat: '斤/2个' + j,
+                returnAmountStr: 20 + j + '斤/2个',
                 remark: '备注' + j
             };
             dataList.push(newOne);
@@ -193,13 +192,14 @@ $(function () {
         var $dispatchDataTable = $dataTable.find('table');
         var $dispatchDataTableTbody = $dispatchDataTable.find('tbody');
         $.each(data, function (i, row) {
+            // 数据预处理
             var $dispatchDataTr = $('<tr>');
             var $dispatchDataTds = '<td>' + row.index + '</td>\n' +
                 '<td>' + row.containerCode + '</td>\n' +
-                '<td>' + row.skuId + '</td>\n' +
-                '<td>' + row.ssuId + '</td>\n' +
+                '<td>' + (row.skuId === 0 ? '' : row.skuId) + '</td>\n' +
+                '<td>' + (row.ssuId === 0 ? '' : row.ssuId) + '</td>\n' +
                 '<td>' + row.name + '</td>\n' +
-                '<td>' + row.returnAmount + row.skuFormat + '</td>\n' +
+                '<td>' + row.returnAmountStr + '</td>\n' +
                 '<td>' + row.remark + '</td>';
             $dispatchDataTr.append($dispatchDataTds);
             $dispatchDataTableTbody.append($dispatchDataTr);

@@ -13,6 +13,8 @@
  */
 $printPaperA4Width:1134px;
 $printPaperA4Height:778px;
+$printPaperA5Width:778px;
+$printPaperA5Height:567px;
 
 @media print {
   .no-print{ display:none;}
@@ -60,8 +62,8 @@ $printPaperA4Height:778px;
  * @time 2017-10-27 10:21:33 周五
  */
 .print-paper-a5{
-  width:1134px;
-  height:800px;
+  width:$printPaperA5Width;
+  height:$printPaperA5Height;
   margin:0 auto;
 }
 
@@ -87,6 +89,7 @@ $receiptsDeliveredPrintPaddingTop:30px;
 $receiptsDeliveredPrintPaddingBottom:50px;
 .receipts-delivered-print{
   padding:$receiptsDeliveredPrintPaddingTop 50px $receiptsDeliveredPrintPaddingBottom;
+  font-size:14px;
 }
 .print-paper-content{
   position:relative;
@@ -97,9 +100,11 @@ $receiptsDeliveredPrintPaddingBottom:50px;
 }
 
 .print-paper-header{
+  h1{margin-bottom:0;}
   .receipts-title{
     display:table;
     width:100%;
+    margin-bottom:10px;
   }
   .receipts-title .cell{
     display:table-cell;
@@ -115,6 +120,46 @@ $receiptsDeliveredPrintPaddingBottom:50px;
   .receipts-delivery-info .ship-warehouse-info{font-weight:500;font-size:16px;}
 }
 
+.receipts-data-table{
+  font-size:14px;
+  height:470px;
+  overflow:auto;
+  table{
+    font-size:14px;
+    thead th{
+      text-align:center;
+    }
+    td:nth-child(1){
+      width:50px;
+      text-align:center;
+    }
+    td:nth-child(2){
+      width:120px;
+    }
+    td:nth-child(3){
+      white-space:nowrap;
+      width:340px;
+    }
+    td:nth-child(4){
+      width:100px;
+    }
+    td:nth-child(5){
+      width:100px;
+    }
+    td:nth-child(6){
+      width:100px;
+    }
+    td:nth-child(7){
+      width:100px;
+    }
+    tbody{
+      th,td{
+        padding:4px;
+      }
+    }
+  }
+}
+
 .bar-code .receipts-title .cell{vertical-align:top;}
 .bar-code .receipts-delivery-info .cell{vertical-align:bottom;}
 .bar-code .receipts-delivery-info .cell:last-child{padding-left:3em;}
@@ -126,8 +171,24 @@ $receiptsDeliveredPrintPaddingBottom:50px;
 .cell dl.data-dl dt,
 .cell dl.data-dl dd{display:table-cell;}
 
-.receipts-summary .cell{display:table-cell;width:20%;}
-.receipts-signature{margin-bottom:20px;}
+.receipts-summary, .receipts-signature{
+  display:table;
+  width:100%;
+  .cell{
+    display:table-cell;
+    line-height:40px;
+    &.col6{
+      width:16.65%;
+    }
+  }
+
+  .need-pay-info{
+    font-size:20px;
+    font-weight:600;
+    white-space:nowrap;
+  }
+}
+
 .print-paper-content .receipts-remark{color:#555;}
 .print-paper-content .receipts-remark .remark-content{font-weight:normal;font-size:13px;}
 
@@ -216,6 +277,11 @@ $receiptsDeliveredPrintPaddingBottom:50px;
       }
       td:nth-child(6){
         width:160px;
+      }
+      tbody{
+        th,td{
+          padding:4px;
+        }
       }
     }
   }

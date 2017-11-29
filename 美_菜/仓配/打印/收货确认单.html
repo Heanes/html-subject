@@ -44,141 +44,13 @@
                 <!-- 中心区域 -->
                 <div class="center-block center-wrap fl">
                     <div class="center-content">
-                        <div class="receipts-delivered-pater" style="padding:50px;">
-                            <div class="print-paper print-paper-a4 receipts-delivered-print" id="printReceipts">
-                                <div class="print-paper-content">
-                                    <div class="receipts-title">
-                                        <div class="cell">
-                                            <h1 class="self-company-name">美菜 MEICAI.CN</h1>
-                                        </div>
-                                        <div class="cell">
-                                            <h1 class="self-warehouse-name">收货确认单（<span id="warehouseName">北京仓库1</span>）</h1>
-                                        </div>
-                                        <div class="cell">
-                                            <h1 class="self-service-phone">客服电话：4006-135-135</h1>
-                                        </div>
-                                    </div>
-                                    <div class="receipts-delivery-info">
-                                        <div class="cell">
-                                            <dl class="data-dl">
-                                                <dd><span id="companyLevel">B</span>-<span id="companyId">2434</span>-<span id="companyName">美味卷饼屋</span></dd>
-                                            </dl>
-                                            <dl class="data-dl">
-                                                <dt>收货人：</dt>
-                                                <dd><span id="receiverName">王丽</span>(<span id="receiverMobile">15010691715</span>)</dd>
-                                            </dl>
-                                            <dl class="data-dl">
-                                                <dt>地址：</dt>
-                                                <dd><span id="receiverAddress">北京市某某地某某地某某地某某街道某某楼某某大厦某某室</span></dd>
-                                            </dl>
-                                        </div>
-                                        <div class="cell">
-                                            <dl class="delivery-type">
-                                                <dd><span id="deliveryType">货到付款</span></dd>
-                                            </dl>
-                                            <dl class="data-dl">
-                                                <dt>配送：</dt>
-                                                <dd><span id="driverNo">010000034</span>-<span id="driverName">高天杰</span>(<span id="driverMobile">15010691715</span>)</dd>
-                                            </dl>
-                                            <dl class="data-dl">
-                                                <dt>销售：</dt>
-                                                <dd><span id="sellerName">郭嘉</span>(<span id="sellerMobile">15010691715</span>)</dd>
-                                            </dl>
-                                        </div>
-                                        <div class="cell">
-                                            <dl class="data-dl">
-                                                <dd class="h2-field"><span id="deliveryBatchId">199</span>-<span id="deliveryBatchName">晨鲜送</span>-<span id="routeName">刘家窑1-5</span></dd>
-                                            </dl>
-                                            <dl class="data-dl">
-                                                <dt>订单号：</dt>
-                                                <dd><span id="omcOrderId">12313435</span></dd>
-                                            </dl>
-                                            <dl class="data-dl">
-                                                <dt>配送日期：</dt>
-                                                <dd><span id="deliveryDateStr">2017-06-15</span></dd>
-                                            </dl>
-                                            <dl class="data-dl">
-                                                <dt>打印时间：</dt>
-                                                <dd><span id="printTimeStr">2017-07-08 17:00:36</span></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="receipts-data-table">
-                                        <table class="table table-bordered table-hover table-condensed">
-                                            <thead>
-                                            <tr>
-                                                <td>#</td>
-                                                <td>商品编码</td>
-                                                <td>商品名称</td>
-                                                <td>下单量</td>
-                                                <td>发货量</td>
-                                                <td>单价(优惠)</td>
-                                                <td>应付金额</td>
-                                                <td>备注</td>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>5454</td>
-                                                <td>可口可乐（24/箱）</td>
-                                                <td>50瓶</td>
-                                                <td>50瓶</td>
-                                                <td>77.02</td>
-                                                <td>154.04</td>
-                                                <td>2箱2瓶</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>5454</td>
-                                                <td>可口可乐（24/箱）</td>
-                                                <td>50瓶</td>
-                                                <td>50瓶</td>
-                                                <td>77.02</td>
-                                                <td>154.04</td>
-                                                <td>2箱2瓶</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>5454</td>
-                                                <td>可口可乐（24/箱）</td>
-                                                <td>50瓶</td>
-                                                <td>50瓶</td>
-                                                <td>77.02</td>
-                                                <td>154.04</td>
-                                                <td>2箱2瓶</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="receipts-summary">
-                                        <div class="cell 5th">
-                                            <dl class="data-dl">
-                                                <dt><span>已优惠：</span></dt>
-                                                <dd><span id="discountedTotalMoney">19.98</span></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="print-paper-footer">
-                                        <!-- 签名 -->
-                                        <div class="receipts-signature">
-                                            <div class="cell 5th">
-                                                <dl class="data-dl">
-                                                    <dt><span>收货人签字/日期：</span></dt>
-                                                    <dd><span id="receive-mark-date"></span></dd>
-                                                </dl>
-                                            </div>
-                                        </div>
-                                        <!-- 备注 -->
-                                        <div class="receipts-remark">
-                                            <h4 class="remark-content">备注：受实际生产影响，已优惠可能与下单时优惠有差异。零钱收取规则：分钱全面，2角以内免收，3至7角按5角收，8至9角按1元收</h4>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="print-list-handle">
+                            <div class="to-print no-print">
+                                <button class="btn btn-success print-all">打印全部</button>
                             </div>
-                            <div class="print-handle">
-                                <button class="btn btn-success" id="printAreaBtn">打印</button>
-                            </div>
+                        </div>
+                        <div class="print-list-wrap">
+
                         </div>
                     </div>
                 </div>
@@ -204,10 +76,182 @@
 <div class="right-bar clearfix">
     <div class="right-bar-content"></div>
 </div>
+<div class="print-delivered-paper-template" style="display:none">
+    <div class="print-group generate">
+        <div class="print-group-handle no-print">
+            <div class="print-handle">
+                <button class="btn btn-success">打印</button>
+            </div>
+        </div>
+        <div class="print-group-content">
+            <div class="receipts-delivered-paper generate">
+                <div class="print-paper print-paper-a4 receipts-delivered-print" id="printReceipts">
+                    <div class="print-paper-content">
+                        <div class="print-paper-header">
+                            <div class="receipts-title">
+                                <div class="cell">
+                                    <h1 class="self-company-name">美菜 MEICAI.CN</h1>
+                                </div>
+                                <div class="cell">
+                                    <h1 class="self-warehouse-name">收货确认单（北京仓库1）</h1>
+                                </div>
+                                <div class="cell">
+                                    <h1 class="self-service-phone">客服电话：4006-135-135</h1>
+                                </div>
+                            </div>
+                            <div class="receipts-delivery-info">
+                                <div class="cell">
+                                    <dl class="data-dl">
+                                        <dd class="company-info"><span class="company-level">B</span>-<span class="company-id">2434</span>-<span class="company-name">美味卷饼屋</span></dd>
+                                    </dl>
+                                    <dl class="data-dl">
+                                        <dd class="receiver-info">收货人：<span id="receiverName">王丽</span>(<span id="receiverMobile">15010691715</span>)</dd>
+                                    </dl>
+                                    <dl class="data-dl">
+                                        <dd class="receive-address-info">地址：<span id="receiverAddress">北京市某某地某某地某某地某某街道某某楼某某大厦某某室</span></dd>
+                                    </dl>
+                                </div>
+                                <div class="cell">
+                                    <dl class="delivery-type">
+                                        <dd class="delivery-type"><span id="deliveryType">货到付款</span></dd>
+                                    </dl>
+                                    <dl class="data-dl">
+                                        <dd class="delivery-info">配送：<span id="driverNo">010000034</span>-<span id="driverName">高天杰</span>(<span id="driverMobile">15010691715</span>)</dd>
+                                    </dl>
+                                    <dl class="data-dl">
+                                        <dd class="seller-info">销售：<span id="sellerName">郭嘉</span>(<span id="sellerMobile">15010691715</span>)</dd>
+                                    </dl>
+                                </div>
+                                <div class="cell">
+                                    <dl class="data-dl">
+                                        <dd class="h2-field delivery-batch-info"><span id="deliveryBatchId">199</span>-<span id="deliveryBatchName">晨鲜送</span>-<span id="routeName">刘家窑1-5</span></dd>
+                                    </dl>
+                                    <dl class="data-dl">
+                                        <dd class="order-no">订单号：<span id="omcOrderId">12313435</span></dd>
+                                    </dl>
+                                    <dl class="data-dl">
+                                        <dd class="delivery-date">配送日期：2017-06-15</dd>
+                                    </dl>
+                                    <dl class="data-dl">
+                                        <dd class="print-time">打印时间：2017年11月28日11:14:39</dd>
+                                        <dd class="print-paper-pager"></dd>
+                                    </dl>
+                                    <dl class="data-dl">
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="receipts-data-table">
+                            <table class="table table-bordered table-hover table-condensed">
+                                <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>商品编码</td>
+                                    <td>商品名称</td>
+                                    <td>下单量</td>
+                                    <td>发货量</td>
+                                    <td>单价(优惠)</td>
+                                    <td>应付金额</td>
+                                    <td>备注</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>5454</td>
+                                    <td>可口可乐（24/箱）</td>
+                                    <td>50瓶</td>
+                                    <td>50瓶</td>
+                                    <td>77.02</td>
+                                    <td>154.04</td>
+                                    <td>2箱2瓶</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="print-paper-footer">
+                            <div class="receipts-summary">
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="discounted-total-money">已优惠：<span class="">19.98</span></dd>
+                                    </dl>
+                                </div>
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="after-discounted-money">优惠后金额：19.98</dd>
+                                    </dl>
+                                </div>
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="delivery-money">运费：19.98</dd>
+                                    </dl>
+                                </div>
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="pre-pay-money">预付款：19.98</dd>
+                                    </dl>
+                                </div>
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="should-get-money">应收：19.98</dd>
+                                    </dl>
+                                </div>
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="customer-need-pay-money">客户应付：3453.23</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <!-- 签名 -->
+                            <div class="receipts-signature">
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="receiver-mark-date">收货人签字/日期：</dd>
+                                    </dl>
+                                </div>
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="deliveryman-mark-date">配送员签字/日期：</dd>
+                                    </dl>
+                                </div>
+                                <!--<div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="replenishment-money">补货金额：</dd>
+                                    </dl>
+                                </div>
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="return-goods-money">退货金额：</dd>
+                                    </dl>
+                                </div>
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="return-package-money">退包装物款：</dd>
+                                    </dl>
+                                </div>-->
+                                <div class="cell col6">
+                                    <dl class="data-dl">
+                                        <dd class="locale-get-money">现场实收：</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <!-- 备注 -->
+                            <div class="receipts-remark">
+                                <h4 class="remark-content">备注：受实际生产影响，已优惠可能与下单时优惠有差异。零钱收取规则：分钱全面，2角以内免收，3至7角按5角收，8至9角按1元收</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="print-end-page"></div>
+        </div>
+    </div>
+</div>
 <cite>
     <!-- S js S -->
     <script type="text/javascript" src="/public/static/libs/js/jquery/2.1.4/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/public/static/libs/js/printArea/2.4.1/js/jquery.printarea.js"></script>
+    <script type="text/javascript" src="js/receiptPrint.js"></script>
     <script type="text/javascript">
         $(function () {
             /**
