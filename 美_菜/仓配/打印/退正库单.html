@@ -79,12 +79,12 @@
     <div class="print-group generate">
         <div class="print-group-handle no-print">
             <div class="print-handle">
-                <button class="btn btn-success">打印</button>
+                <button class="btn btn-success print-one">打印</button>
             </div>
         </div>
         <div class="print-group-content">
             <div class="receipts-delivered-paper generate">
-                <div class="print-paper print-paper-a4 receipts-delivered-print bar-code">
+                <div class="print-paper receipts-delivered-print return-task-print bar-code">
                     <div class="print-paper-content">
                         <div class="print-paper-header">
                             <div class="receipts-title">
@@ -172,9 +172,11 @@
     <script type="text/javascript" src="/public/static/libs/js/printArea/2.4.1/js/jquery.printarea.js"></script>
     <script type="text/javascript" src="/public/static/libs/js/qrcode/jquery-qrcode/0.14.0/jquery-qrcode.min.js"></script>
     <script type="text/javascript" src="/public/static/libs/js/jsBarcode/3.8.0/JsBarcode.all.js"></script>
-    <script type="text/javascript" src="js/js.js"></script>
+    <script type="text/javascript" src="js/printTeturnTask.js"></script>
     <script type="text/javascript">
         $(function () {
+
+            console.log('订单号：1234'.match(/\d+/)[0]);
 
             /**
              * @doc 打印

@@ -1,5 +1,6 @@
 $(function () {
 
+    // todo 渲染完成后重复的检查高度，如果高度太高，就减小每组个数
     function geTestReceiverData(paperCount, dataCount) {
         var one = {
             "data": {
@@ -20,16 +21,16 @@ $(function () {
             var j = i + 1;
             var newOne = {
                     "column1": j,
-                    "column12": "",
+                    "column12": "备注" + j,
                     "column11": "135.00",
                     "column10": "",
                     "column5": "纯生" + j,
                     "column4": "青岛" + j,
                     "column3": "青岛青岛啤酒|纯生|箱(12瓶* 500ml)/箱(12瓶* 500ml)",
-                    "column2": 2701010760901 + j,
+                    "column2": 27010107609001 + j,
                     "column9": "",
                     "column8": "45.00",
-                    "column7": 1 + j,
+                    "column7": 1 + j + "箱",
                     "column6": 1 + j + "箱"
                 };
             dataList.push(newOne);
@@ -70,7 +71,7 @@ $(function () {
                     "value": ""
                 },
                 "xrLabRow7_1": {
-                    "value": "备注：受实际生产影响，已优惠可能与下单时优惠有差异"
+                    "value": "备注：受实际生产影响，已优惠可能与下单时优惠有差异。"
                 },
                 "xrLabRow5_4": {
                     "value": "预付款：0.00"
@@ -79,7 +80,7 @@ $(function () {
                     "value": ""
                 },
                 "xrLabRow8_1": {
-                    "value": "如果您选择现金付款，则未收货款零头将计入您美菜账户的欠款，后续收取"
+                    "value": "如果您选择现金付款，则未收货款零头将计入您美菜账户的欠款，后续收取。"
                 },
                 "xrLabRow3_3": {
                     "value": "配送日期：2017-11-23                                                                                                                                                                                                                                                                                                                                          打印时间：2017-11-27 11:30:21"
@@ -130,7 +131,7 @@ $(function () {
                     "value": "货到付款 "
                 },
                 "xrLabRow1_2": {
-                    "value": "收货确认单（廊坊分拣中心）" + j
+                    "value": "收货确认单(廊坊分拣中心)" + j
                 }
             };
             mainList.push(one);
@@ -139,24 +140,31 @@ $(function () {
         return mainList;
     }
 
-    var printData = geTestReceiverData(2, 13);
+    var printData = geTestReceiverData(1, 28);
     console.log(printData);
 
 
     var $printDeliveredPaperTemplate = $('.print-delivered-paper-template');
     var $printListWrap = $('.print-list-wrap');
-    renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate);
+    renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate, 'A5');
 
-    function renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate) {
+    function renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate, paperSize) {
+        var groupSize = 28, paperA4StyleClass = 'print-paper-a4', paperA5StyleClass = 'print-paper-a5', paperStyleClass = paperA4StyleClass;
+        if(paperSize === 'A5'){
+            paperStyleClass = paperA5StyleClass;
+            groupSize = 7;
+        }
+
         $.each(printData, function (i, item) {
             var $geDomWrap = $($printDeliveredPaperTemplate.html());
             var $printGroupHandle = $geDomWrap.find('.print-group-handle');
             var $printGroupContent = $geDomWrap.find('.print-group-content').empty();
 
-            var groupData = splitDataListToGroup(item.gridView1.list);
+            var groupData = splitDataListToGroup(item.gridView1.list, groupSize);
             var hasPager = groupData.length > 1;
             $.each(groupData, function (j, row) {
                 var $geDomWrap = $($printDeliveredPaperTemplate.html());
+                $geDomWrap.find('.print-paper').removeClass(paperA5StyleClass).removeClass(paperA4StyleClass).addClass(paperStyleClass);
 
                 var $printBody = $geDomWrap.find('.receipts-data-table').empty();
                 var $printHeader = $geDomWrap.find('.print-paper-header').empty();
@@ -218,6 +226,7 @@ $(function () {
         $printHeader.find('.receive-address-info').text(item.xrLabRow3_1.value);
 
         $printHeader.find('.delivery-type').text(item.xrLabRow2_1_2.value);
+        $printHeader.find('.delivery-info').text(item.xrLabRow2_2.value);
         $printHeader.find('.seller-info').text(item.xrLabRow3_2.value);
         $printHeader.find('.delivery-batch-info').text(item.xrLabRow2_1_3.value);
         $printHeader.find('.order-no').text(item.xrLabRow2_3.value);
@@ -271,13 +280,15 @@ $(function () {
         $printFooter.find('.return-goods-money').text(item.xrLabRow6_4.value);
         $printFooter.find('.return-package-money').text(item.xrLabRow6_4.value);
         $printFooter.find('.locale-get-money').text(item.xrLabRow6_6.value);
+        $printFooter.find('.remark1').text(item.xrLabRow7_1.value);
+        $printFooter.find('.remark2').text(item.xrLabRow8_1.value);
         return $printFooter;
     }
     function generatePrintHandle($geDomWrap, callback, callbackParam) {
         //var $geDomWrap = $($printDeliveredPaperTemplate.html());
         // 绑定打印按钮事件
         var $printHandle = $geDomWrap.find('.print-handle'), $printPaper = $geDomWrap.find('.print-paper-content');
-        $printHandle.on('click', function () {
+        $printHandle.find('.print-one').on('click', function () {
             $printPaper.printArea({
             });
             if(typeof callback === 'function') callback(callbackParam);

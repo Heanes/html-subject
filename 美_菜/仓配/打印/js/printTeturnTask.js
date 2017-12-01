@@ -10,7 +10,7 @@ $(function () {
             printTime: '2017-10-31 11:22:20',
             printTimeFormative: '2017-10-31 11:22:20',
             shipUserName: '胡斐',
-            returnTaskList: geTestReturnTaskData(30)
+            returnTaskList: geTestReturnTaskData(40)
         },
         {
             returnTaskNo: 'TK123456789test1',
@@ -22,7 +22,7 @@ $(function () {
             printTime: '2017-10-31 11:22:20',
             printTimeFormative: '2017-10-31 11:22:20',
             shipUserName: '胡斐',
-            returnTaskList: geTestReturnTaskData(10)
+            returnTaskList: geTestReturnTaskData(30)
         }
     ];
     console.log(printData);
@@ -57,18 +57,25 @@ $(function () {
 
     var $printDeliveredPaperTemplate = $('.print-delivered-paper-template');
     var $printListWrap = $('.print-list-wrap');
-    renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate);
-    
-    function renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate) {
+    renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate, 'A4');
+
+    function renderPrintPaper(printData, $printListWrap, $printDeliveredPaperTemplate, paperSize) {
+        var groupSize = 30, paperA4StyleClass = 'print-paper-a4', paperA5StyleClass = 'print-paper-a5', paperStyleClass = paperA4StyleClass;
+        if(paperSize === 'A5'){
+            paperStyleClass = paperA5StyleClass;
+            groupSize = 10;
+        }
+
         $.each(printData, function (i, item) {
             var $geDomWrap = $($printDeliveredPaperTemplate.html());
             var $printGroupHandle = $geDomWrap.find('.print-group-handle');
             var $printGroupContent = $geDomWrap.find('.print-group-content').empty();
 
-            var groupData = splitDataListToGroup(item.returnTaskList);
+            var groupData = splitDataListToGroup(item.returnTaskList, groupSize);
             var hasPager = groupData.length > 1;
             $.each(groupData, function (j, row) {
                 var $geDomWrap = $($printDeliveredPaperTemplate.html());
+                $geDomWrap.find('.print-paper').removeClass(paperA5StyleClass).removeClass(paperA4StyleClass).addClass(paperStyleClass);
 
                 var $printBody = $geDomWrap.find('.dispatch-data-table').empty();
                 var $printHeader = $geDomWrap.find('.print-paper-header').empty();
@@ -224,7 +231,7 @@ $(function () {
         //var $geDomWrap = $($printDeliveredPaperTemplate.html());
         // 绑定打印按钮事件
         var $printHandle = $geDomWrap.find('.print-handle'), $printPaper = $geDomWrap.find('.print-paper-content');
-        $printHandle.on('click', function () {
+        $printHandle.find('.print-one').on('click', function () {
             $printPaper.printArea({
             });
             if(typeof callback === 'function') callback(callbackParam);

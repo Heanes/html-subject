@@ -16,14 +16,11 @@
   page-break-after: always; }
 
 .print-list-handle {
-  width: 1134px;
+  width: 886px;
   margin: 0 auto; }
   .print-list-handle .to-print {
     margin-bottom: 20px;
     text-align: right; }
-
-.print-list-wrap {
-  overflow-y: auto; }
 
 .receipts-delivered-paper {
   padding: 10px; }
@@ -32,15 +29,15 @@
  * @doc 横向打印
  */
 @page {
-  size: landscape; }
+  /*size:landscape;*/ }
 /**
  * @doc A4纸张大小
  * @author Heanes
  * @time 2017-10-27 10:21:33 周五
  */
 .print-paper-a4 {
-  width: 1134px;
-  height: 778px;
+  width: 836px;
+  height: 1110px;
   margin: 0 auto; }
 
 /**
@@ -49,8 +46,8 @@
  * @time 2017-10-27 10:21:33 周五
  */
 .print-paper-a5 {
-  width: 778px;
-  height: 567px;
+  width: 836px;
+  height: 550px;
   margin: 0 auto; }
 
 .print-paper {
@@ -67,16 +64,16 @@
 .print-paper-footer {
   position: absolute;
   width: 100%;
-  bottom: 0; }
+  bottom: 20px; }
 
 .receipts-delivered-print {
-  padding: 30px 50px 50px;
+  padding: 30px 50px;
   font-size: 14px; }
 
 .print-paper-content {
   position: relative;
   height: 100%;
-  min-height: 698px;
+  /*min-height:$printPaperA4Height - $receiptsDeliveredPrintPaddingTop - $receiptsDeliveredPrintPaddingBottom;*/
   padding-bottom: 130px;
   page-break-after: always; }
 
@@ -91,9 +88,9 @@
   width: 33.333%;
   vertical-align: middle; }
 .print-paper-header .receipts-title .cell .self-service-phone {
-  font-size: 20px; }
+  font-size: 18px; }
 .print-paper-header .receipts-title .cell h1 {
-  font-size: 22px; }
+  font-size: 18px; }
 .print-paper-header .receipts-delivery-info {
   display: table;
   width: 100%;
@@ -103,7 +100,7 @@
   width: 33.333%;
   vertical-align: top; }
 .print-paper-header .receipts-delivery-info .cell .h2-field {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600; }
 .print-paper-header .receipts-delivery-info .cell .delivery-type {
   text-align: center;
@@ -113,40 +110,38 @@
   font-size: 16px; }
 
 .receipts-data-table {
-  font-size: 14px;
-  height: 470px;
-  overflow: auto; }
+  font-size: 13px; }
   .receipts-data-table table {
-    font-size: 14px; }
+    table-layout: fixed;
+    font-size: 12px; }
     .receipts-data-table table thead th {
       text-align: center; }
     .receipts-data-table table td:nth-child(1) {
-      width: 50px;
+      width: 30px;
       text-align: center; }
     .receipts-data-table table td:nth-child(2) {
-      width: 120px; }
+      width: 110px; }
     .receipts-data-table table td:nth-child(3) {
-      white-space: nowrap;
-      width: 340px; }
+      width: 230px; }
     .receipts-data-table table td:nth-child(4) {
-      width: 100px; }
+      width: 70px; }
     .receipts-data-table table td:nth-child(5) {
-      width: 100px; }
+      width: 70px; }
     .receipts-data-table table td:nth-child(6) {
-      width: 100px; }
+      width: 70px; }
     .receipts-data-table table td:nth-child(7) {
-      width: 100px; }
+      width: 70px; }
     .receipts-data-table table tbody th, .receipts-data-table table tbody td {
-      padding: 4px; }
+      padding: 4px;
+      word-break: break-all;
+      white-space: nowrap;
+      overflow: hidden; }
 
 .bar-code .receipts-title .cell {
   vertical-align: top; }
 
 .bar-code .receipts-delivery-info .cell {
   vertical-align: bottom; }
-
-.bar-code .receipts-delivery-info .cell:last-child {
-  padding-left: 3em; }
 
 .cell dl.data-dl {
   margin-bottom: 8px; }
@@ -171,9 +166,12 @@
   width: 100%; }
   .receipts-summary .cell, .receipts-signature .cell {
     display: table-cell;
-    line-height: 40px; }
+    line-height: 36px;
+    white-space: nowrap; }
     .receipts-summary .cell.col6, .receipts-signature .cell.col6 {
       width: 16.65%; }
+    .receipts-summary .cell:not(:first-child), .receipts-signature .cell:not(:first-child) {
+      text-align: center; }
   .receipts-summary .need-pay-info, .receipts-signature .need-pay-info {
     font-size: 20px;
     font-weight: 600;
@@ -183,11 +181,17 @@
   color: #555; }
 
 .print-paper-content .receipts-remark .remark-content {
+  display: table;
+  width: 100%;
   font-weight: normal;
-  font-size: 13px; }
+  font-size: 12px; }
+
+.print-paper-content .receipts-remark .remark-content .remark {
+  display: table-cell;
+  max-width: 50%; }
 
 .print-handle {
-  width: 1134px;
+  width: 836px;
   text-align: right;
   margin: 0 auto 20px; }
 
@@ -217,31 +221,31 @@
   .print-paper-content .barcode-wrap {
     text-align: center; }
   .print-paper-content .dispatch-data-table {
-    font-size: 14px;
-    height: 470px;
-    overflow: auto; }
+    font-size: 12px; }
     .print-paper-content .dispatch-data-table table {
-      font-size: 14px; }
+      font-size: 12px; }
       .print-paper-content .dispatch-data-table table thead th {
         text-align: center; }
       .print-paper-content .dispatch-data-table table td:nth-child(1) {
-        width: 50px;
+        width: 40px;
         text-align: center; }
       .print-paper-content .dispatch-data-table table td:nth-child(2) {
-        width: 120px; }
+        width: 80px; }
       .print-paper-content .dispatch-data-table table td:nth-child(3) {
-        width: 100px; }
+        width: 80px; }
       .print-paper-content .dispatch-data-table table td:nth-child(4) {
-        width: 100px; }
+        width: 80px; }
       .print-paper-content .dispatch-data-table table td:nth-child(5) {
-        width: 280px; }
+        width: 240px; }
       .print-paper-content .dispatch-data-table table td:nth-child(6) {
-        width: 160px; }
+        width: 90px; }
       .print-paper-content .dispatch-data-table table tbody th, .print-paper-content .dispatch-data-table table tbody td {
-        padding: 4px; }
+        padding: 4px;
+        white-space: nowrap;
+        overflow: hidden; }
   .print-paper-content .dispatch-info table {
     font-size: 14px;
-    line-height: 30px; }
+    line-height: 24px; }
     .print-paper-content .dispatch-info table.separate-average-3 td {
       width: 33.333%; }
   .print-paper-content .print-paper-pager {
@@ -250,11 +254,12 @@
     letter-spacing: 3px; }
 
 .print-group {
-  width: 1184px;
+  width: 886px;
   margin: 0 auto 10px;
   padding: 10px;
   border: 1px solid #ddd; }
   .print-group .print-group-handle {
+    width: 886px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px; }
 

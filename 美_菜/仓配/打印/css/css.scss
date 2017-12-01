@@ -11,10 +11,10 @@
  * @author Heanes
  * @time 2017-10-27 10:21:33 周五
  */
-$printPaperA4Width:1134px;
-$printPaperA4Height:778px;
-$printPaperA5Width:778px;
-$printPaperA5Height:567px;
+$printPaperA4Width:836px;
+$printPaperA4Height:1110px;
+$printPaperA5Width:836px;
+$printPaperA5Height:550px;
 
 @media print {
   .no-print{ display:none;}
@@ -25,7 +25,7 @@ $printPaperA5Height:567px;
 }
 
 .print-list-handle{
-  width:$printPaperA4Width;
+  width:$printPaperA4Width + 50px;
   margin:0 auto;
   .to-print{
     margin-bottom:20px;
@@ -34,7 +34,6 @@ $printPaperA5Height:567px;
 }
 
 .print-list-wrap{
-  overflow-y:auto;
 }
 .receipts-delivered-paper{
   padding:10px;
@@ -43,7 +42,7 @@ $printPaperA5Height:567px;
  * @doc 横向打印
  */
 @page{
-  size:landscape;
+  /*size:landscape;*/
 }
 
 /**
@@ -82,19 +81,19 @@ $printPaperA5Height:567px;
 .print-paper-footer{
   position:absolute;
   width:100%;
-  bottom:0;
+  bottom:20px;
 }
 
 $receiptsDeliveredPrintPaddingTop:30px;
 $receiptsDeliveredPrintPaddingBottom:50px;
 .receipts-delivered-print{
-  padding:$receiptsDeliveredPrintPaddingTop 50px $receiptsDeliveredPrintPaddingBottom;
+  padding:$receiptsDeliveredPrintPaddingTop 50px;
   font-size:14px;
 }
 .print-paper-content{
   position:relative;
   height:100%;
-  min-height:$printPaperA4Height - $receiptsDeliveredPrintPaddingTop - $receiptsDeliveredPrintPaddingBottom;
+  /*min-height:$printPaperA4Height - $receiptsDeliveredPrintPaddingTop - $receiptsDeliveredPrintPaddingBottom;*/
   padding-bottom:130px;
   page-break-after: always;
 }
@@ -111,50 +110,51 @@ $receiptsDeliveredPrintPaddingBottom:50px;
     width:33.333%;
     vertical-align:middle;
   }
-  .receipts-title .cell .self-service-phone{font-size:20px;}
-  .receipts-title .cell h1{font-size:22px;}
+  .receipts-title .cell .self-service-phone{font-size:18px;}
+  .receipts-title .cell h1{font-size:18px;}
   .receipts-delivery-info{display:table;width:100%;margin-bottom:20px;}
   .receipts-delivery-info .cell{display:table-cell;width:33.333%;vertical-align:top;}
-  .receipts-delivery-info .cell .h2-field{font-size:22px;font-weight:600;}
+  .receipts-delivery-info .cell .h2-field{font-size:18px;font-weight:600;}
   .receipts-delivery-info .cell .delivery-type{text-align:center;margin-bottom:8px;}
   .receipts-delivery-info .ship-warehouse-info{font-weight:500;font-size:16px;}
 }
 
 .receipts-data-table{
-  font-size:14px;
-  height:470px;
-  overflow:auto;
+  font-size:13px;
   table{
-    font-size:14px;
+    table-layout: fixed;
+    font-size:12px;
     thead th{
       text-align:center;
     }
     td:nth-child(1){
-      width:50px;
+      width:30px;
       text-align:center;
     }
     td:nth-child(2){
-      width:120px;
+      width:110px;
     }
     td:nth-child(3){
-      white-space:nowrap;
-      width:340px;
+      width:230px;
     }
     td:nth-child(4){
-      width:100px;
+      width:70px;
     }
     td:nth-child(5){
-      width:100px;
+      width:70px;
     }
     td:nth-child(6){
-      width:100px;
+      width:70px;
     }
     td:nth-child(7){
-      width:100px;
+      width:70px;
     }
     tbody{
       th,td{
         padding:4px;
+        word-break:break-all;
+        white-space:nowrap;
+        overflow:hidden;
       }
     }
   }
@@ -162,7 +162,6 @@ $receiptsDeliveredPrintPaddingBottom:50px;
 
 .bar-code .receipts-title .cell{vertical-align:top;}
 .bar-code .receipts-delivery-info .cell{vertical-align:bottom;}
-.bar-code .receipts-delivery-info .cell:last-child{padding-left:3em;}
 
 .cell dl.data-dl{margin-bottom:8px;}
 .cell dl.data-dl:last-child{margin-bottom:0;}
@@ -176,9 +175,13 @@ $receiptsDeliveredPrintPaddingBottom:50px;
   width:100%;
   .cell{
     display:table-cell;
-    line-height:40px;
+    line-height:36px;
+    white-space:nowrap;
     &.col6{
       width:16.65%;
+    }
+    &:not(:first-child){
+      text-align:center;
     }
   }
 
@@ -190,8 +193,8 @@ $receiptsDeliveredPrintPaddingBottom:50px;
 }
 
 .print-paper-content .receipts-remark{color:#555;}
-.print-paper-content .receipts-remark .remark-content{font-weight:normal;font-size:13px;}
-
+.print-paper-content .receipts-remark .remark-content{display:table;width:100%;font-weight:normal;font-size:12px;}
+.print-paper-content .receipts-remark .remark-content .remark{display:table-cell;max-width:50%;}
 
 .print-handle{
   width:$printPaperA4Width;
@@ -251,36 +254,36 @@ $receiptsDeliveredPrintPaddingBottom:50px;
   }
 
   .dispatch-data-table{
-    font-size:14px;
-    height:470px;
-    overflow:auto;
+    font-size:12px;
     table{
-      font-size:14px;
+      font-size:12px;
       thead th{
         text-align:center;
       }
       td:nth-child(1){
-        width:50px;
+        width:40px;
         text-align:center;
       }
       td:nth-child(2){
-        width:120px;
+        width:80px;
       }
       td:nth-child(3){
-        width:100px;
+        width:80px;
       }
       td:nth-child(4){
-        width:100px;
+        width:80px;
       }
       td:nth-child(5){
-        width:280px;
+        width:240px;
       }
       td:nth-child(6){
-        width:160px;
+        width:90px;
       }
       tbody{
         th,td{
           padding:4px;
+          white-space:nowrap;
+          overflow:hidden;
         }
       }
     }
@@ -289,7 +292,7 @@ $receiptsDeliveredPrintPaddingBottom:50px;
   .dispatch-info{
     table{
       font-size:14px;
-      line-height:30px;
+      line-height:24px;
       &.separate-average-3{
         td{
           width:33.333%;
@@ -311,6 +314,7 @@ $receiptsDeliveredPrintPaddingBottom:50px;
   padding:10px;
   border:1px solid #ddd;
   .print-group-handle{
+    width:$printPaperA4Width + 50px;
     border-bottom:1px solid #ddd;
     margin-bottom:10px;
   }
