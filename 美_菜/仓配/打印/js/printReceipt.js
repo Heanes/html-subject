@@ -261,12 +261,6 @@ $(function () {
 
     function generatePrintFooter(item, $printDeliveredPaperTemplate) {
         var $geDomWrap = $($printDeliveredPaperTemplate.html());
-        // 绑定打印按钮事件
-        var $printHandle = $geDomWrap.find('.print-handle'), $printPaper = $geDomWrap.find('.print-paper');
-        $printHandle.on('click', function () {
-            $printPaper.printArea({
-            });
-        });
         var $printFooter = $geDomWrap.find('.print-paper-footer');
         $printFooter.find('.discounted-total-money').text(item.xrLabRow5_1.value);
         $printFooter.find('.after-discounted-money').text(item.xrLabRow5_2.value);

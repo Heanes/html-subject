@@ -216,12 +216,6 @@ $(function () {
 
     function generatePrintFooter(item, $printDeliveredPaperTemplate) {
         var $geDomWrap = $($printDeliveredPaperTemplate.html());
-        // 绑定打印按钮事件
-        var $printHandle = $geDomWrap.find('.print-handle'), $printPaper = $geDomWrap.find('.print-paper');
-        $printHandle.on('click', function () {
-            $printPaper.printArea({
-            });
-        });
         var $printFooter = $geDomWrap.find('.print-paper-footer');
         $printFooter.find('.ship-user-name').text(item.shipUserName);
         $printFooter.find('.out-warehouse-time').text(item.outWarehouseTimeFormative);
