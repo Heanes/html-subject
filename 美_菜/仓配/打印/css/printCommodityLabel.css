@@ -1,0 +1,83 @@
+@charset "UTF-8";
+/**
+ * @doc 打印商品签样式
+ * @author Heanes
+ * @time 2017-12-18 15:15:21 周一
+ */
+/**
+ * @doc A4纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+@media print {
+  .no-print {
+    display: none; } }
+.print-end-page {
+  page-break-after: always; }
+
+/**
+ * @doc A4纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+.print-paper-a4 {
+  width: 836px;
+  height: 1110px;
+  margin: 0 auto; }
+
+/**
+ * @doc A5纸张大小
+ * @author Heanes
+ * @time 2017-10-27 10:21:33 周五
+ */
+.print-paper-a5 {
+  width: 836px;
+  height: 550px;
+  margin: 0 auto; }
+
+.print-paper {
+  outline: 0;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.5);
+  animation: glow 1s ease-in-out;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  background-color: #fff;
+  page-break-after: always; }
+
+.print-commodity-label {
+  padding: 30px 50px;
+  font-size: 14px;
+  width: 836px;
+  height: 550px;
+  margin: 20px auto; }
+
+.print-list-handle {
+  width: 886px;
+  margin: 0 auto; }
+  .print-list-handle .to-print {
+    margin-bottom: 20px;
+    text-align: right; }
+
+.print-list-wrap .print-paper-content p, .print-list-wrap .print-paper-content h1, .print-list-wrap .print-paper-content h2, .print-list-wrap .print-paper-content h3, .print-list-wrap .print-paper-content h4, .print-list-wrap .print-paper-content h5, .print-list-wrap .print-paper-content h6 {
+  margin: 0; }
+.print-list-wrap .print-paper-content .qrcode-text {
+  font-size: 15px; }
+.print-list-wrap .print-paper-content .sku-info {
+  font-size: 18px; }
+.print-list-wrap .print-paper-content .supplier-info {
+  font-size: 20px; }
+.print-list-wrap .print-paper-content .printer-info {
+  font-size: 16px; }
+
+.qrcode-wrap {
+  display: table;
+  width: 100%; }
+
+.cell {
+  display: table-cell; }
+  .cell.col2 {
+    width: 50%; }
+
+/*# sourceMappingURL=printCommodityLabel.css.map */

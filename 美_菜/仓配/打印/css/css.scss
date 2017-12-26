@@ -87,7 +87,7 @@ $printPaperA5Height:550px;
 $receiptsDeliveredPrintPaddingTop:30px;
 $receiptsDeliveredPrintPaddingBottom:50px;
 .receipts-delivered-print{
-  padding:$receiptsDeliveredPrintPaddingTop 50px;
+  padding:$receiptsDeliveredPrintPaddingTop $receiptsDeliveredPrintPaddingBottom;
   font-size:14px;
 }
 .print-paper-content{
