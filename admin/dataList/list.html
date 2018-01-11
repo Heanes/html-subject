@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <!-- bootstrap -->
+    <link href="//cdn.heanes.com/ui-framework/bootstrap/3.3.7/css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <!-- bootstrapTable -->
+    <link href="//cdn.heanes.com/js/bootstrapTable/1.11.1/bootstrap-table.css" type="text/css" rel="stylesheet" />
+    <!-- select2 -->
+    <link href="//cdn.heanes.com/js/select2/4.0.5/css/select2.css" type="text/css" rel="stylesheet" />
+    <link href="../css/css.css" type="text/css" rel="stylesheet" />
+    <style>
+        .record-detail-modal-head{
+            background-color:#eee;
+            border-radius:6px;
+            margin-bottom:20px;
+        }
+        .table-block{
+            display:table;
+            width:100%;
+        }
+        .record-detail-info{
+            width:100%;
+        }
+        .data-modal-handle{
+            width:100px;
+            text-align:right;
+        }
+    </style>
+</head>
+<body>
+<div class="panel-body">
+    <div class="panel-body">
+        <form id="formTableQuery" class="form-inline" role="form">
+            <!-- 更新时间 -->
+            <div class="form-group">
+                <label for="searchUpdateTime">更新时间</label>
+                <input type="text" class="form-control" id="searchUpdateTime" name="searchUpdateTime" placeholder="更新时间">
+            </div>
+            <!-- 状态选择 -->
+            <div class="form-group">
+                <label for="searchCurrentStatus">状态选择</label>
+                <select class="form-control" name="searchCurrentStatus" id="searchCurrentStatus">
+                    <option value="">当前状态</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="searchCurrentOperation">当前操作</label>
+                <select class="form-control" name="searchCurrentOperation" id="searchCurrentOperation">
+                    <option value="">当前操作</option>
+                </select>
+            </div>
+            <!-- 商户信息 -->
+            <div class="form-group">
+                <label for="searchCompanyId">商户信息</label>
+                <input type="text" class="form-control" id="searchCompanyId" name="searchCompanyId" placeholder="门店ID">
+            </div>
+            <!-- 门店名称 -->
+            <div class="form-group">
+                <label for="searchCompanyName">商户信息</label>
+                <input type="text" class="form-control" id="searchCompanyName" name="searchCompanyName" placeholder="门店名称">
+            </div>
+            <!-- 当前司机信息 -->
+            <div class="form-group">
+                <label for="searchDriverName">当前司机信息</label>
+                <input type="text" class="form-control" id="searchDriverName" name="searchDriverName" placeholder="司机姓名">
+            </div>
+            <!-- 司机authID -->
+            <div class="form-group">
+                <label for="searchDriverAuthId">司机authID</label>
+                <input type="text" class="form-control" id="searchDriverAuthId" name="searchDriverAuthId" placeholder="司机authID">
+            </div>
+            <!-- 司机所属城市 -->
+            <div class="form-group">
+                <label for="searchDriverCityId">司机所属城市</label>
+                <select class="form-control" name="searchDriverCityId" id="searchDriverCityId">
+                    <option value="">司机所属城市</option>
+                    <option value="1">北京</option>
+                </select>
+            </div>
+            <!-- 表单操作区域 -->
+            <div class="form-group">
+                <label></label>
+                <button type="button" class="btn btn-info" id="formSearchBtn">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                </button>
+                <button type="reset" class="btn btn-warning" id="formResetBtn">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>重置
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="data-list-wrap">
+        <div class="data-list-handle">
+            <div class="handle-left-wrap">
+                <button type="button" class="btn btn-primary handle-btn" id="exportBtn">导出</button>
+            </div>
+        </div>
+        <div class="data-list-message"></div>
+        <div class="data-list">
+            <table class="table table-hover bootstrap-table-view"></table>
+        </div>
+    </div>
+</div>
+
+<!-- 弹出层 modal -->
+<div id="modal_mainRecordDetail" class="modal fade" tabindex="1" role="dialog" aria-labelledby="lackModalLabel" data-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog" dialog-width="800px" style="width:800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="$(this).parents('.modal').modal('hide');">&times;</button>
+                <h4 class="modal-title" id="modalTitle">记录详情</h4>
+            </div>
+            <div class="detail-list modal-body">
+                <div class="panel-body table-block record-detail-modal-head">
+                    <div class="data-info cell record-detail-info">
+                        <dl class="data-info-list inline">
+                            <dt>门店ID：</dt>
+                            <dd>12345</dd>
+                        </dl>
+                        <dl class="data-info-list inline">
+                            <dt>门店名称：</dt>
+                            <dd>土豆鸡米饭</dd>
+                        </dl>
+                        <dl class="data-info-list inline">
+                            <dt>当前状态：</dt>
+                            <dd>已结转</dd>
+                        </dl>
+                    </div>
+                    <div class="data-modal-handle cell">
+                        <button class="btn btn-primary bind-company-btn" id="bindCompanyBtn">分配商户</button>
+                    </div>
+                </div>
+                <div class="data-list">
+                    <table id="recordDetailTableView"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="script-resource">
+    <!-- jQuery -->
+    <script src="//cdn.heanes.com/js/jquery/2.1.4/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <!-- bootstrap -->
+    <script src="//cdn.heanes.com/ui-framework/bootstrap/3.3.7/js/bootstrap.js" type="text/javascript"></script>
+    <!-- S bootstrapTable -->
+    <script src="//cdn.heanes.com/js/bootstrapTable/1.11.1/bootstrap-table.js" type="text/javascript"></script>
+    <script src="//cdn.heanes.com/js/bootstrapTable/1.11.1/locale/bootstrap-table-zh-CN.js" type="text/javascript"></script>
+    <!-- E bootstrapTable -->
+    <!-- S select2 -->
+    <script src="//cdn.heanes.com/js/select2/4.0.5/js/select2.full.js" type="text/javascript"></script>
+    <script src="//cdn.heanes.com/js/select2/4.0.5/js/i18n/zh-CN.js" type="text/javascript"></script>
+    <!-- E select2 -->
+    <!-- S datePicker-->
+    <script src="//cdn.heanes.com/js/dateTimePicker/my97DatePicker/4.8/WdatePicker.js" type="text/javascript"></script>
+
+    <script type="application/javascript">
+        $.fn.serializeObject = function() {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function () {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+
+        $(function () {
+
+
+
+            // ------------------- form 内的表单项处理
+            // select2
+            var $searchDriverCityId = $('#searchDriverCityId');
+            $searchDriverCityId.select2({
+                language: 'zh-CN',
+                theme: 'classic',
+                placeholder: '司机所属城市'
+            });
+
+            // datetimePicker
+            var $searchUpdateTime = $('#searchUpdateTime');
+            $searchUpdateTime.click(function () {
+                WdatePicker({skin: 'bootstrap',firstDayOfWeek: 1});
+            });
+
+            // form search handle
+            var $formSearchBtn = $('#formSearchBtn'), $formTableQuery = $('#formTableQuery');
+            $formSearchBtn.on('click', function () {
+                console.log($formTableQuery.serializeObject());
+            });
+
+            // ------------------- 弹层
+            /**
+             * @doc 显示详情弹层
+             * @author Heanes
+             * @time 2017-12-27 11:42:06 周三
+             */
+            function renderModalRecordDetail() {
+                var $modal_mainRecordDetail = $('#modal_mainRecordDetail');
+                $modal_mainRecordDetail.modal('show');
+            }
+
+            var $recordDetailTableView = $('#recordDetailTableView');
+            var recordDetailTableOption = {
+                method: 'post',
+                pagination: true,
+                queryParamsType : 'page',
+                pageSize: 25,
+                pageList: [5, 10, 25, 50, 100],
+                columns: [
+                {
+                    field: 'price',
+                    title: '更新时间'
+                }, {
+                    field: 'price',
+                    title: '门店当前归属'
+                }, {
+                    field: 'price',
+                    title: '门店上次归属'
+                }, {
+                    field: 'price',
+                    title: '状态'
+                }, {
+                    field: 'price',
+                    title: '操作行为'
+                }, {
+                    field: 'price',
+                    title: '操作人'
+                }],
+                data: [
+                    {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }
+                ]};
+            $recordDetailTableView.bootstrapTable(recordDetailTableOption);
+
+
+
+            // ------------------- 基础数据列表查询
+            var $bootstrapTableView = $('.bootstrap-table-view'),
+                bootstrapTableOption = {
+                    method: 'post',
+                    pagination: true,
+                    queryParamsType : 'page',
+                    pageSize: 25,
+                    pageList: [5, 10, 25, 50, 100],
+                    columns: [{
+                        field: 'id',
+                        title: '门店所属城市'
+                    }, {
+                        field: 'name',
+                        title: '门店ID'
+                    }, {
+                        field: 'price',
+                        title: '门店名称',
+                        formatter: function (value, row, index) {
+                            var detailLink = '<a class="detail-link" href="javascript:;">' + value + '</a>';
+                            return detailLink;
+                        },
+                        events: {
+                            'click .detail-link': function(e, value, row, index) {
+                                renderModalRecordDetail();
+                            }
+                        }
+                    }, {
+                        field: 'price',
+                        title: '门店所属售卖区'
+                    }, {
+                        field: 'price',
+                        title: '当前站长姓名'
+                    }, {
+                        field: 'price',
+                        title: '当前区长姓名'
+                    }, {
+                        field: 'price',
+                        title: '当前司机姓名'
+                    }, {
+                        field: 'price',
+                        title: '当前司机authID'
+                    }, {
+                        field: 'price',
+                        title: '司机所属城市'
+                    }, {
+                        field: 'price',
+                        title: '更新日期'
+                    }, {
+                        field: 'price',
+                        title: '当前状态'
+                    }, {
+                        field: 'price',
+                        title: '当前操作'
+                    }, {
+                        field: 'price',
+                        title: '操作',
+                        formatter: function (value, row, index) {
+                            if(value === 1){
+                                var opLink = '<a class="op-link">' + value + '</a>';
+                                return opLink;
+                            }
+                            return '无';
+                        },
+                        events: {
+                            'click .op-link': function(e, value, row, index) {
+                                alert(value);
+                            }
+                        }
+                    }],
+                    data: [
+                        {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }, {
+                        id: 1,
+                        name: 'Item 1',
+                        price: '$1'
+                    }, {
+                        id: 2,
+                        name: 'Item 2',
+                        price: '$2'
+                    }
+                    ]
+                };
+            $bootstrapTableView.bootstrapTable(bootstrapTableOption);
+        });
+    </script>
+</div>
+</body>
+</html>

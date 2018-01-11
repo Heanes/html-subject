@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* 提示页 */
+        .layadmin-tips{margin-top: 30px; text-align: center;}
+        .layadmin-tips .layui-icon[face]{display: inline-block; font-size: 300px; color: #393D49;}
+        .layadmin-tips .layui-text{width: 500px; margin: 30px auto; padding-top: 20px; border-top: 5px solid #009688; font-size: 16px;}
+        .layadmin-tips h1{font-size: 100px; line-height: 100px; color: #009688;}
+        .layadmin-tips .layui-text .layui-anim{display: inline-block;}
+
+        .layui-anim-loop {
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite
+        }
+
+        @-webkit-keyframes layui-rotate {
+            from {
+                -webkit-transform: rotate(0)
+            }
+
+            to {
+                -webkit-transform: rotate(360deg)
+            }
+        }
+
+        @keyframes layui-rotate {
+            from {
+                transform: rotate(0)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .layui-anim-rotate {
+            -webkit-animation-name: layui-rotate;
+            animation-name: layui-rotate;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-timing-function: linear;
+            animation-timing-function: linear
+        }
+
+        @font-face {
+            font-family: layui-icon;
+            src: url(font/iconfont.eot?v=220);
+            src: url(font/iconfont.eot?v=220#iefix) format('embedded-opentype'),url(font/iconfont.svg?v=220#iconfont) format('svg'),url(font/iconfont.woff?v=220) format('woff'),url(font/iconfont.ttf?v=220) format('truetype')
+        }
+
+        .layui-icon {
+            font-family: layui-icon!important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale
+        }
+    </style>
+</head>
+<body>
+<div class="layadmin-tips">
+    <i class="layui-icon" face="">&#xe664;</i>
+    <div class="layui-text">
+        <h1>
+            <span class="layui-anim layui-anim-loop layui-anim-">4</span>
+            <span class="layui-anim layui-anim-loop layui-anim-rotate">0</span>
+            <span class="layui-anim layui-anim-loop layui-anim-">4</span>
+        </h1>
+    </div>
+</div>
+</body>
+</html>

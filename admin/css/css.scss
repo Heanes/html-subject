@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/**
+ * @doc 基本样式
+ * @author Heanes
+ * @time 2017-12-27 10:43:35 周丹
+ */
+
+.inline-block{
+  display:inline-block;
+}
+.cell{
+  display:table-cell;
+}
+
+.bootstrap-table .table > thead {
+  background-color: #ECECEC;
+}
+
+.form-group {
+  margin-top: 10px;
+}
+
+.form-inline .form-group label {
+  min-width: 87px;
+  text-align: center;
+  margin-left: 20px;
+}
+
+.data-list-handle {
+  margin: 18px 0;
+}
+
+.data-info-list{
+  margin-bottom:0;
+  margin-right:10px;
+  dt,dd{
+    display:inline-block;
+  }
+  &.inline{
+    display:inline-block;
+  }
+}
