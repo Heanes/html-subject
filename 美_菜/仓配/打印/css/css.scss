@@ -89,11 +89,16 @@ $receiptsDeliveredPrintPaddingBottom:50px;
 .receipts-delivered-print{
   padding:$receiptsDeliveredPrintPaddingTop $receiptsDeliveredPrintPaddingBottom;
   font-size:14px;
+  dl{
+    margin:0;
+  }
+  dd{
+    line-height:inherit;
+  }
 }
 .print-paper-content{
   position:relative;
   height:100%;
-  /*min-height:$printPaperA4Height - $receiptsDeliveredPrintPaddingTop - $receiptsDeliveredPrintPaddingBottom;*/
   padding-bottom:130px;
   page-break-after: always;
 }
@@ -127,34 +132,61 @@ $receiptsDeliveredPrintPaddingBottom:50px;
     thead th{
       text-align:center;
     }
-    td:nth-child(1){
-      width:30px;
-      text-align:center;
-    }
-    td:nth-child(2){
-      width:110px;
-    }
-    td:nth-child(3){
-      width:230px;
-    }
-    td:nth-child(4){
-      width:70px;
-    }
-    td:nth-child(5){
-      width:70px;
-    }
-    td:nth-child(6){
-      width:70px;
-    }
-    td:nth-child(7){
-      width:70px;
-    }
     tbody{
       th,td{
         padding:4px;
         word-break:break-all;
         white-space:nowrap;
         overflow:hidden;
+      }
+    }
+    &.receipt-table{
+      td:nth-child(1){
+        width:30px;
+        text-align:center;
+      }
+      td:nth-child(2){
+        width:80px;
+      }
+      td:nth-child(3){
+        width:220px;
+      }
+      td:nth-child(4){
+        width:80px;
+      }
+      td:nth-child(5){
+        width:80px;
+      }
+      td:nth-child(6){
+        width:80px;
+      }
+      td:nth-child(7){
+        width:80px;
+      }
+    }
+
+    &.stock-out-table{
+      td:nth-child(1){
+        width:30px;
+        text-align:center;
+      }
+      td:nth-child(2){
+        width:80px;
+      }
+      td:nth-child(3){
+        width:70px;
+      }
+      td:nth-child(4){
+        width:220px;
+      }
+      td:nth-child(5){
+        width:80px;
+      }
+      td:nth-child(6){
+        width:80px;
+      }
+      td:nth-child(7){
+        width:80px;
       }
     }
   }
@@ -170,31 +202,51 @@ $receiptsDeliveredPrintPaddingBottom:50px;
 .cell dl.data-dl dt,
 .cell dl.data-dl dd{display:table-cell;}
 
-.receipts-summary, .receipts-signature{
-  display:table;
-  width:100%;
-  .cell{
-    display:table-cell;
-    line-height:36px;
-    white-space:nowrap;
-    &.col6{
-      width:16.65%;
-    }
-    &:not(:first-child){
-      text-align:center;
-    }
-  }
-
-  .need-pay-info{
-    font-size:20px;
-    font-weight:600;
-    white-space:nowrap;
+.stock-out-footer{
+  .total-price{
+    text-align:right;
+    margin-right:40px;
   }
 }
 
-.print-paper-content .receipts-remark{color:#555;}
-.print-paper-content .receipts-remark .remark-content{display:table;width:100%;font-weight:normal;font-size:12px;}
-.print-paper-content .receipts-remark .remark-content .remark{display:table-cell;max-width:50%;}
+.receipt-footer{
+  .receipts-summary, .receipts-signature{
+    display:table;
+    width:100%;
+    .cell{
+      display:table-cell;
+      line-height:36px;
+      white-space:nowrap;
+      &.col6{
+        width:16.65%;
+      }
+      &:not(:first-child){
+        text-align:center;
+      }
+    }
+
+    .need-pay-info{
+      font-size:20px;
+      font-weight:600;
+      white-space:nowrap;
+    }
+  }
+
+  .receipts-remark{
+    color:#555;
+    .remark-content{
+      display:table;
+      width:100%;
+      font-weight:normal;
+      font-size:12px;
+      .remark{
+        display:table-cell;
+        max-width:50%;
+      }
+    }
+  }
+}
+
 
 .print-handle{
   width:$printPaperA4Width;

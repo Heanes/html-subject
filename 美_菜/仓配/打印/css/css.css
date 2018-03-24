@@ -69,11 +69,14 @@
 .receipts-delivered-print {
   padding: 30px 50px;
   font-size: 14px; }
+  .receipts-delivered-print dl {
+    margin: 0; }
+  .receipts-delivered-print dd {
+    line-height: inherit; }
 
 .print-paper-content {
   position: relative;
   height: 100%;
-  /*min-height:$printPaperA4Height - $receiptsDeliveredPrintPaddingTop - $receiptsDeliveredPrintPaddingBottom;*/
   padding-bottom: 130px;
   page-break-after: always; }
 
@@ -116,26 +119,41 @@
     font-size: 12px; }
     .receipts-data-table table thead th {
       text-align: center; }
-    .receipts-data-table table td:nth-child(1) {
-      width: 30px;
-      text-align: center; }
-    .receipts-data-table table td:nth-child(2) {
-      width: 110px; }
-    .receipts-data-table table td:nth-child(3) {
-      width: 230px; }
-    .receipts-data-table table td:nth-child(4) {
-      width: 70px; }
-    .receipts-data-table table td:nth-child(5) {
-      width: 70px; }
-    .receipts-data-table table td:nth-child(6) {
-      width: 70px; }
-    .receipts-data-table table td:nth-child(7) {
-      width: 70px; }
     .receipts-data-table table tbody th, .receipts-data-table table tbody td {
       padding: 4px;
       word-break: break-all;
       white-space: nowrap;
       overflow: hidden; }
+    .receipts-data-table table.receipt-table td:nth-child(1) {
+      width: 30px;
+      text-align: center; }
+    .receipts-data-table table.receipt-table td:nth-child(2) {
+      width: 80px; }
+    .receipts-data-table table.receipt-table td:nth-child(3) {
+      width: 220px; }
+    .receipts-data-table table.receipt-table td:nth-child(4) {
+      width: 80px; }
+    .receipts-data-table table.receipt-table td:nth-child(5) {
+      width: 80px; }
+    .receipts-data-table table.receipt-table td:nth-child(6) {
+      width: 80px; }
+    .receipts-data-table table.receipt-table td:nth-child(7) {
+      width: 80px; }
+    .receipts-data-table table.stock-out-table td:nth-child(1) {
+      width: 30px;
+      text-align: center; }
+    .receipts-data-table table.stock-out-table td:nth-child(2) {
+      width: 80px; }
+    .receipts-data-table table.stock-out-table td:nth-child(3) {
+      width: 70px; }
+    .receipts-data-table table.stock-out-table td:nth-child(4) {
+      width: 220px; }
+    .receipts-data-table table.stock-out-table td:nth-child(5) {
+      width: 80px; }
+    .receipts-data-table table.stock-out-table td:nth-child(6) {
+      width: 80px; }
+    .receipts-data-table table.stock-out-table td:nth-child(7) {
+      width: 80px; }
 
 .bar-code .receipts-title .cell {
   vertical-align: top; }
@@ -161,34 +179,35 @@
 .cell dl.data-dl dd {
   display: table-cell; }
 
-.receipts-summary, .receipts-signature {
+.stock-out-footer .total-price {
+  text-align: right;
+  margin-right: 40px; }
+
+.receipt-footer .receipts-summary, .receipt-footer .receipts-signature {
   display: table;
   width: 100%; }
-  .receipts-summary .cell, .receipts-signature .cell {
+  .receipt-footer .receipts-summary .cell, .receipt-footer .receipts-signature .cell {
     display: table-cell;
     line-height: 36px;
     white-space: nowrap; }
-    .receipts-summary .cell.col6, .receipts-signature .cell.col6 {
+    .receipt-footer .receipts-summary .cell.col6, .receipt-footer .receipts-signature .cell.col6 {
       width: 16.65%; }
-    .receipts-summary .cell:not(:first-child), .receipts-signature .cell:not(:first-child) {
+    .receipt-footer .receipts-summary .cell:not(:first-child), .receipt-footer .receipts-signature .cell:not(:first-child) {
       text-align: center; }
-  .receipts-summary .need-pay-info, .receipts-signature .need-pay-info {
+  .receipt-footer .receipts-summary .need-pay-info, .receipt-footer .receipts-signature .need-pay-info {
     font-size: 20px;
     font-weight: 600;
     white-space: nowrap; }
-
-.print-paper-content .receipts-remark {
+.receipt-footer .receipts-remark {
   color: #555; }
-
-.print-paper-content .receipts-remark .remark-content {
-  display: table;
-  width: 100%;
-  font-weight: normal;
-  font-size: 12px; }
-
-.print-paper-content .receipts-remark .remark-content .remark {
-  display: table-cell;
-  max-width: 50%; }
+  .receipt-footer .receipts-remark .remark-content {
+    display: table;
+    width: 100%;
+    font-weight: normal;
+    font-size: 12px; }
+    .receipt-footer .receipts-remark .remark-content .remark {
+      display: table-cell;
+      max-width: 50%; }
 
 .print-handle {
   width: 836px;

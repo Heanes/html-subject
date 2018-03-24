@@ -176,7 +176,7 @@ $(function () {
                 }
                 $printHeader.replaceWith($printHeaderGenerate);
                 // 身子
-                $printBody.replaceWith(generateDataTable(row, $printDeliveredPaperTemplate));
+                $printBody.replaceWith(generateDataTable(item, row, $printDeliveredPaperTemplate));
 
                 if(groupData.length === 1 || j === (groupData.length - 1)){
                     // 尾部
@@ -235,49 +235,84 @@ $(function () {
         return $printHeader;
     }
 
-    function generateDataTable(data, $printDeliveredPaperTemplate) {
+    function generateDataTable(item, data, $printDeliveredPaperTemplate) {
         var $geDomWrap = $($printDeliveredPaperTemplate.html());
         var $dataTable = $geDomWrap.find('.receipts-data-table');
-        // 单据数据
-        var $receiptsDataTable = $dataTable.find('table');
-        var $receiptsDataTableTbody = $receiptsDataTable.find('tbody').empty();
-        $.each(data, function (i, row) {
-            // 数据预处理
-            var $dispatchDataTr = $('<tr>');
-            var $dispatchDataTds =
-                '<td>' + row.column1 + '</td>\n' +
-                '<td>' + row.column2 + '</td>\n' +
-                '<td>' + row.column3 + '</td>\n' +
-                '<td>' + row.column6 + '</td>\n' +
-                '<td>' + row.column7 + '</td>\n' +
-                '<td>' + row.column8 + '</td>\n' +
-                '<td>' + row.column11 + '</td>\n' +
-                '<td>' + row.column12 + '</td>';
-            $dispatchDataTr.append($dispatchDataTds);
-            $receiptsDataTableTbody.append($dispatchDataTr);
-        });
+        if(item.fileName.value.indexOf('ReceiptGood') > -1){
+            $dataTable.find('.stock-out-table').remove();
+            // 单据数据
+            var $receiptsDataTable = $dataTable.find('table');
+            var $receiptsDataTableTbody = $receiptsDataTable.find('tbody').empty();
+            $.each(data, function (i, row) {
+                // 数据预处理
+                var $dispatchDataTr = $('<tr>');
+                var $dispatchDataTds =
+                    '<td>' + row.column1 + '</td>\n' +
+                    '<td>' + row.column2 + '</td>\n' +
+                    '<td>' + row.column3 + '</td>\n' +
+                    '<td>' + row.column6 + '</td>\n' +
+                    '<td>' + row.column7 + '</td>\n' +
+                    '<td>' + row.column8 + '</td>\n' +
+                    '<td>' + row.column11 + '</td>\n' +
+                    '<td>' + row.column12 + '</td>';
+                $dispatchDataTr.append($dispatchDataTds);
+                $receiptsDataTableTbody.append($dispatchDataTr);
+            });
+        }
+        if(item.fileName.value.indexOf('StoreReplenishment') > -1){
+            $dataTable.find('.receipt-table').remove();
+            // 单据数据
+            var $receiptsDataTable = $dataTable.find('table');
+            var $receiptsDataTableTbody = $receiptsDataTable.find('tbody').empty();
+            $.each(data, function (i, row) {
+                // 数据预处理
+                var $dispatchDataTr = $('<tr>');
+                var $dispatchDataTds =
+                    '<td>' + row.column1 + '</td>\n' +
+                    '<td>' + row.column2 + '</td>\n' +
+                    '<td>' + row.column3 + '</td>\n' +
+                    '<td>' + row.column4 + '</td>\n' +
+                    '<td>' + row.column5 + '</td>\n' +
+                    '<td>' + row.column6 + '</td>\n' +
+                    '<td>' + row.column7 + '</td>\n' +
+                    '<td>' + row.column8 + '</td>\n';
+                $dispatchDataTr.append($dispatchDataTds);
+                $receiptsDataTableTbody.append($dispatchDataTr);
+            });
+        }
+
         return $dataTable;
     }
 
     function generatePrintFooter(item, $printDeliveredPaperTemplate) {
         var $geDomWrap = $($printDeliveredPaperTemplate.html());
         var $printFooter = $geDomWrap.find('.print-paper-footer');
-        $printFooter.find('.discounted-total-money').text(item.xrLabRow5_1.value);
-        $printFooter.find('.after-discounted-money').text(item.xrLabRow5_2.value);
-        $printFooter.find('.delivery-money').text(item.xrLabRow5_3.value);
-        $printFooter.find('.pre-pay-money').text(item.xrLabRow5_4.value);
-        $printFooter.find('.should-get-money').text(item.xrLabRow5_5.value);
-        $printFooter.find('.customer-need-pay-money').text(item.xrLabRow5_6.value);
-        $printFooter.find('.receiver-mark-date').text(item.xrLabRow6_1.value);
-        $printFooter.find('.deliveryman-mark-date').text(item.xrLabRow6_4.value);
-        $printFooter.find('.replenishment-money').text(item.xrLabRow6_4.value);
-        $printFooter.find('.return-goods-money').text(item.xrLabRow6_4.value);
-        $printFooter.find('.return-package-money').text(item.xrLabRow6_4.value);
-        $printFooter.find('.locale-get-money').text(item.xrLabRow6_6.value);
-        $printFooter.find('.remark1').text(item.xrLabRow7_1.value);
-        $printFooter.find('.remark2').text(item.xrLabRow8_1.value);
+        if(item.fileName.value.indexOf('StoreReplenishment') > -1){
+            $printFooter.find('.receipt-footer').hide();
+            $printFooter.find('.stock-out-footer').show();
+            $printFooter.find('.total-price').text(item.xrLabRow5_1.value + item.xrLabRow5_2.value);
+        }
+        if(item.fileName.value.indexOf('ReceiptGood') > -1){
+            $printFooter.find('.receipt-footer').show();
+            $printFooter.find('.stock-out-footer').hide();
+            $printFooter.find('.discounted-total-money').text(item.xrLabRow5_1.value);
+            $printFooter.find('.after-discounted-money').text(item.xrLabRow5_2.value);
+            $printFooter.find('.delivery-money').text(item.xrLabRow5_3.value);
+            $printFooter.find('.pre-pay-money').text(item.xrLabRow5_4.value);
+            $printFooter.find('.should-get-money').text(item.xrLabRow5_5.value);
+            $printFooter.find('.customer-need-pay-money').text(item.xrLabRow5_6.value);
+            $printFooter.find('.receiver-mark-date').text(item.xrLabRow6_1.value);
+            $printFooter.find('.deliveryman-mark-date').text(item.xrLabRow6_4.value);
+            $printFooter.find('.replenishment-money').text(item.xrLabRow6_4.value);
+            $printFooter.find('.return-goods-money').text(item.xrLabRow6_4.value);
+            $printFooter.find('.return-package-money').text(item.xrLabRow6_4.value);
+            $printFooter.find('.locale-get-money').text(item.xrLabRow6_6.value);
+            $printFooter.find('.remark1').text(item.xrLabRow7_1.value);
+            $printFooter.find('.remark2').text(item.xrLabRow8_1.value);
+        }
         return $printFooter;
     }
+
     function generatePrintHandle($geDomWrap, callback, callbackParam) {
         //var $geDomWrap = $($printDeliveredPaperTemplate.html());
         // 绑定打印按钮事件
@@ -289,4 +324,9 @@ $(function () {
         });
         return $printHandle;
     }
+
+    var param = {
+        "batchId": 3117260, "locCode": "KA-2-1-1", "ownerId": "4406", "packingList": [], "preUsedAmountIntVal": 0, "returnVal": 1, "skuId": 117834, "sortingCenterId": 10003, "sourceCode": "TX00903352", "ssuId": 0, "uU": 0, "unionKey": "10003-9-117834-0-3117260-TX00903352-KA-2-1-1", "useableAmountIntVal": 0, "warehouseId": 9
+    }
+
 });

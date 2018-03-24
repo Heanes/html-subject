@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="receipts-data-table">
-                            <table class="table table-bordered table-hover table-condensed">
+                            <table class="receipt-table table table-bordered table-hover table-condensed">
                                 <thead>
                                 <tr>
                                     <td>#</td>
@@ -166,76 +166,108 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <table class="stock-out-table table table-bordered table-hover table-condensed">
+                                <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>ID</td>
+                                    <td>商品编码</td>
+                                    <td>商品名称</td>
+                                    <td>下单量</td>
+                                    <td>单价(元)</td>
+                                    <td>总价(元)</td>
+                                    <td>补货价</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>5454</td>
+                                    <td>可口可乐（24/箱）</td>
+                                    <td>50瓶</td>
+                                    <td>77.02</td>
+                                    <td>154.04</td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="print-paper-footer">
-                            <div class="receipts-summary">
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="discounted-total-money">已优惠：<span class="">19.98</span></dd>
-                                    </dl>
-                                </div>
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="after-discounted-money">优惠后金额：19.98</dd>
-                                    </dl>
-                                </div>
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="delivery-money">运费：19.98</dd>
-                                    </dl>
-                                </div>
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="pre-pay-money">预付款：19.98</dd>
-                                    </dl>
-                                </div>
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="should-get-money">应收：19.98</dd>
-                                    </dl>
-                                </div>
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="customer-need-pay-money">客户应付：3453.23</dd>
-                                    </dl>
-                                </div>
+                            <!-- 补货单尾部 -->
+                            <div class="stock-out-footer">
+                                <div class="total-price">总计：</div>
                             </div>
-                            <!-- 签名 -->
-                            <div class="receipts-signature">
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="receiver-mark-date">收货人签字/日期：</dd>
-                                    </dl>
+                            <!-- 收货确认单尾部 -->
+                            <div class="receipt-footer">
+                                <div class="receipts-summary">
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="discounted-total-money">已优惠：<span class="">19.98</span></dd>
+                                        </dl>
+                                    </div>
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="after-discounted-money">优惠后金额：19.98</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="delivery-money">运费：19.98</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="pre-pay-money">预付款：19.98</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="should-get-money">应收：19.98</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="customer-need-pay-money">客户应付：3453.23</dd>
+                                        </dl>
+                                    </div>
                                 </div>
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="deliveryman-mark-date">配送员签字/日期：</dd>
-                                    </dl>
+                                <!-- 签名 -->
+                                <div class="receipts-signature">
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="receiver-mark-date">收货人签字/日期：</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="deliveryman-mark-date">配送员签字/日期：</dd>
+                                        </dl>
+                                    </div>
+                                    <!--<div class="cell col6">
+                                        <dl>
+                                            <dd class="replenishment-money">补货金额：</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="return-goods-money">退货金额：</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="return-package-money">退包装物款：</dd>
+                                        </dl>
+                                    </div>-->
+                                    <div class="cell col6">
+                                        <dl>
+                                            <dd class="locale-get-money">现场实收：</dd>
+                                        </dl>
+                                    </div>
                                 </div>
-                                <!--<div class="cell col6">
-                                    <dl>
-                                        <dd class="replenishment-money">补货金额：</dd>
-                                    </dl>
+                                <!-- 备注 -->
+                                <div class="receipts-remark">
+                                    <h4 class="remark-content"><span class="remark remark1">备注：受实际生产影响，已优惠可能与下单时优惠有差异。</span><span class="remark remark2">零钱收取规则：分钱全面，2角以内免收，3至7角按5角收，8至9角按1元收</span></h4>
                                 </div>
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="return-goods-money">退货金额：</dd>
-                                    </dl>
-                                </div>
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="return-package-money">退包装物款：</dd>
-                                    </dl>
-                                </div>-->
-                                <div class="cell col6">
-                                    <dl>
-                                        <dd class="locale-get-money">现场实收：</dd>
-                                    </dl>
-                                </div>
-                            </div>
-                            <!-- 备注 -->
-                            <div class="receipts-remark">
-                                <h4 class="remark-content"><span class="remark remark1">备注：受实际生产影响，已优惠可能与下单时优惠有差异。</span><span class="remark remark2">零钱收取规则：分钱全面，2角以内免收，3至7角按5角收，8至9角按1元收</span></h4>
                             </div>
                         </div>
                     </div>
